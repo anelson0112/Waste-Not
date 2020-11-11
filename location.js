@@ -1,15 +1,14 @@
 "use strict"; 
  
 class Location {
-    constructor () {  //should location be the argument or should we leave blank? 
-        this.location = location;  
-        //do we need admin, supervisor and barista if they are already logged in
-        //as that particular user? 
-        this.admin = admin; 
-        this.supervisor = supervisor;
-        this.barista = barista;
+    constructor (location) {  //(change argument to location and user? or maybe no arguments?)
+        this.location = location; //or use an empty array as this.location = [];
         this.inventory = inventory; 
-
+        //do we need admin, supervisor and barista if they are already logged in
+        //as that particular user?  TAKING THESE OUT FOR NOW
+        //this.admin = admin; 
+        //this.supervisor = supervisor;
+        //this.barista = barista;
     } 
 
         getStoreLocation () {
