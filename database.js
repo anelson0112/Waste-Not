@@ -37,9 +37,7 @@ is that it has to be parsed with a XML parser, where JSON can be parsed by a Jav
 and saved to a variable. Lastly, JSON can use arrays, whereas XML cannot. All in all, JSON will be a 
 much better fit for the User schema, as it will allow us to easily manipulate and use the data with JavaScript. */ 
 
-Location = new Schema ({
-    store: String,
-});
+
 
 Action = new Schema ({
     user: User,
