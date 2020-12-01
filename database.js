@@ -10,7 +10,7 @@ const Goods = new Schema ({
     /*quantiy of good to sell, making required so if there are none sent in a given day it will have a zero entered and not accidently ommited.*/
     itemQty: {type: Number, required : true},
     /*price is price, read that you could require USD or decimal, but that is extranious and unneccesary*/
-    itemPrice: Number,
+    itemPrice: {type: Number, required: true},
     
 });
 
