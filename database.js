@@ -98,11 +98,11 @@ Action = new Schema ({
     mongoose, is that we don't have a serious amount of validation, no marked up
     text to write to database, and our endpoints are JSON ready.  */
 
-})
 
 
 
-get sales schema??
+
+//get sales schema??
 /*Willie Example for reference*/
 /*var UserLikesSchema = new Schema(
     {
