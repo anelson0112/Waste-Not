@@ -1,7 +1,16 @@
-Goods = new Schema ({
-    itemName: String,
-    itemQty: Number,
-    itemPrice: Number,
+const mongoose = require ('mongoose');
+const Schema = mongoose.Schema;
+
+
+/*This is the schema we will use to enter in the actual items available*/ 
+/* for our purposes, it will be much easer to use JSON than XML, all of our items are object oriented which JSON is bbasically made for, it's much easier to read and retrieve data using JSON rather than XML*/
+const Goods = new Schema ({
+    //name of good to sell
+    itemName: { type: String, required : true, maxlength: 25},
+    /*quantiy of good to sell, making required so if there are none sent in a given day it will have a zero entered and not accidently ommited.*/
+    itemQty: {type: Number, required : true},
+    /*price is price, read that you could require USD or decimal, but that is extranious and unneccesary*/
+    itemPrice: {type: Number, required: true},
     
 });
 
@@ -27,6 +36,11 @@ Users = new Schema ({
     }]
 });
 
+/* Location schema, for keeping location separate, can get loaded into the action and User schema as needed*/
+const Location = new Schema ({
+    storeName: {type: String, required: true, maxlength: 25},
+});
+
 /*For the User schema: Pros and cons of developing the documents in XML vs JSON- 
 
 There are many advantages of developing the documents in JSON. JSON is much more readable 
@@ -36,6 +50,7 @@ which is much more readable and intuitive than XML's tree structure. The biggest
 is that it has to be parsed with a XML parser, where JSON can be parsed by a Javascript function (json.parse(string))
 and saved to a variable. Lastly, JSON can use arrays, whereas XML cannot. All in all, JSON will be a 
 much better fit for the User schema, as it will allow us to easily manipulate and use the data with JavaScript. */ 
+
 
 
 
