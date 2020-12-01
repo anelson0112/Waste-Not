@@ -19,13 +19,13 @@ const Goods = new Schema ({
 //we chose to have a schema of Users b/c there are different permission levels and access
 //depending on who is logged in 
 //this schema makes it easy to put the User schema into our other data (which will tie in w/ who is logged in)
-Users = new Schema ({
+const Users = new Schema ({
     //username is stored as a string 
     username: {type: String, required: true, maxlength: 20},
     //password is stored as a string 
     password: {type: String, required: true, maxlength: 20},
-    //email is stored as a string 
-    email: {type: String, required: true},
+    //email is stored as a string, email must be unique  
+    email: {type: String, required: true, unique: true},
     //there are different permission levels depending on the user 
     //this lists the different user types as an array and looks for the Boolean value to be true
     //creating an array makes it easier to iterate over the data to see which permission level/user is selected/logged in  
