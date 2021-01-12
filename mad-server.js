@@ -1,3 +1,16 @@
+//these are necessary universal variables at top of public side JS for my 
+//  stuff to work, modified for our various use cases: users, goods
+var editUserData;
+var editedUser;
+var editGoodsData;
+var editedGood;
+
+
+
+
+
+
+
 //user and location api's   slash location slash users from spreadsheet
 
 //*********here is my first stab at api calls
@@ -140,6 +153,52 @@ function clickDeleteToDo(deleteEmail){
 //***** EDIT USER      EDIT USER     EDIT USER **********
 //***** EDIT USER      EDIT USER     EDIT USER **********
 //***** EDIT USER      EDIT USER     EDIT USER **********
+
+//CLIENT SIDE EDIT USER
+//CLIENT SIDE EDIT USER
+//CLIENT SIDE EDIT USER
+function clickUpdateUser(email){
+    console.log(email);
+
+   
+    updateUser(email).then(function(body){
+              console.log(body); 
+    
+             
+         }).catch(function(err){
+             console.log(err);
+         });
+     };
+
+async function updateUser(email){
+    var newUserRole =  JSON.parse(document.querySelector('input[name="editUserRole"]:checked').value);
+    let editedUser = {
+        personName : document.getElementById('editPersonName').value,
+        email : document.querySelector('input[name="editEmail"]:checked').value,
+        password : document.getElementById('editPassword').value,
+        phone : document.getElementById('editPhone').value,
+        user_role : newUserRole
+    };
+
+    console.log(editedUser);
+
+    let requestOptions = {
+        method: 'PATCH',
+        body: JSON.stringify(editedUser),
+        headers: {'Content-Type': 'application/json'}
+    }
+
+
+const response = await fetch('/items', requestOptions); 
+    const body = await response.json();
+
+    if (response.status != 200){
+        throw Error('Error - update not saved!');
+    }
+    alert('Update saved!');
+    window.location.href = 'index.html';
+    return true;
+};
 
 //SERVER SIDE EDIT USER
 //SERVER SIDE EDIT USER
