@@ -4,14 +4,17 @@ const mongoose = require ("mongoose");
 const bodyParser = require('body-parser');
 //call in schema models
 var Goods = require ("./models.models.js");
-var Users = require ("./models.models.js");
-var Locations = require ("./models.models.js");
+var User = require ("./models.models.js");
+var Location = require ("./models.models.js");
 //require express
 const express = require("express");
 //call in express
 const app = express();
 //add path library
 const path = require("path");
+
+//declare port to connect to
+const port = 3000;
 
 //connect to Atlas cluster
 const mongoDB = "mongodb+srv://wastenotskilledkc:madANDal4life2021@wastenot1.sj0ff.mongodb.net/test"
@@ -41,9 +44,15 @@ app.use(
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 
+//open up server, list on specific id and port
+//ip address aka hostnames
+app.listen(port, function(){
+    console.log("Server is running at " + port)
+});
+
 /* Here starts the API Calls*/
 
-//get a list of all the goods
+//GET LIST OF ALL GOODS
 app.get("/goods", function (request, response){
 
     Goods.find (function(err, goods){
@@ -179,7 +188,7 @@ app.patch('/users/email', (request, response) => {
         response.status(200).send({ status: 'OK'})
     } 
     }); 
-
+});
    //SERVER SIDE ADD LOCATION
 
 app.post("/location", (request, response) => {
@@ -205,44 +214,3 @@ app.delete('/location', async (request, response) => {
         console.log('Didnt find the location!');
     }
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
