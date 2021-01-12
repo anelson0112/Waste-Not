@@ -62,7 +62,7 @@ class Inventory{
 
 
 //Maybe set separate class for baked goods that feeds into inventory
-class Goods{
+class FoodItems{
     constructor (category, flavor) {
         this.cat = category; //ie. muffin, scone, burrito
         this.flavor = flavor;//ie. bluberry, cinnamon, bacon
@@ -78,7 +78,7 @@ class Goods{
     }
 }
 
-class Sides extends Goods{ //this may all be a bit much
+class Sides extends FoodItems{ //this may all be a bit much
     constructor(color){
         this.salsa = color
     }
