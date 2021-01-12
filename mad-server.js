@@ -4,6 +4,13 @@
 //*********here is my first stab at api calls
 //*********here is my first stab at api calls
 
+
+//***** USER APIS      USER APIS     USER APIS **********
+//***** USER APIS      USER APIS     USER APIS **********
+//***** USER APIS      USER APIS     USER APIS **********
+//***** USER APIS      USER APIS     USER APIS **********
+
+
 //***** ADD USER      ADD USER     ADD USER **********
 //***** ADD USER      ADD USER     ADD USER **********
 //***** ADD USER      ADD USER     ADD USER **********
@@ -47,7 +54,6 @@ async function addUser(){
         password : document.getElementById("password").value,
         email : document.getElementById('email').value,
         phone : document.getElementById('phone').value,
-        email : document.getElementById('email').value,
 //****We need to change User Schema to just role string values... */
         user_role: document.querySelector('input[name="user_role"]:checked').value
     } 
@@ -83,7 +89,7 @@ async function addUser(){
 //SERVER SIDE DELETE USER
 
 // *** I'm unsure what we'll use as the key...perhaps email address???  ****
-app.delete('/users/email, async (request, response) => {
+app.delete('/users/email', async (request, response) => {
     try {
         await User.deleteOne({email: request.params.email});
         response.sendStatus(204);
@@ -131,10 +137,96 @@ function clickDeleteToDo(deleteEmail){
         return true;
     };
 
+//***** EDIT USER      EDIT USER     EDIT USER **********
+//***** EDIT USER      EDIT USER     EDIT USER **********
+//***** EDIT USER      EDIT USER     EDIT USER **********
+
+//SERVER SIDE EDIT USER
+//SERVER SIDE EDIT USER
+//SERVER SIDE EDIT USER
+
+//**IMPORTANT! We need to decide how to look up the user..I've assumed email.
+//I don't think we need username??  Maybe just email is username??
+
+app.patch('/users/email', (request, response) => {
+    console.log(request.body);
+    var userUpdateId = request.body.email;
+    var userUpdateName = request.body.personName;
+    var userUpdateUsername = request.body.username;
+    var userUpdatePassword = request.body.password;
+    var userUpdateEmail = request.body.email;
+    var userUpdatePhone = request.body.phone;
+    var userUpdateUser_Role = request.body.user_role;
+    console.log(userUpdateId);
+   Item.findByIdAndUpdate(userUpdateId, { 
+            name : userUpdateName,
+            username : userUpdateUsername,
+            password : userUpdatePassword,
+            email : userUpdateEmail,
+            phone : userUpdatePhone,
+            user_role: userUpdateUser_Role
+        }, 
+         function (err, docs) { 
+        if (err){ 
+            console.log(err) 
+            } 
+    else{ 
+        console.log("here's the old user record:"+docs);
+        response.status(200).send({ status: 'OK'})
+    } 
+    }); 
+
+//***** LOCATION APIS      LOCATION APIS     LOCATION APIS **********
+//***** LOCATION APIS      LOCATION APIS     LOCATION APIS **********
+//***** LOCATION APIS      LOCATION APIS     LOCATION APIS **********
+
+
+//***** ADD LOCATION      ADD LOCATION     ADD LOCATION **********
+//***** ADD LOCATION      ADD LOCATION     ADD LOCATION **********
+//***** ADD LOCATION      ADD LOCATION     ADD LOCATION **********
+
+//SERVER SIDE ADD LOCATION
+//SERVER SIDE ADD LOCATION
+//SERVER SIDE ADD LOCATION
+
+app.post("/location", (request, response) => {
+    console.log(request.body);
+    let location = new Location(request.body);
+    user.save((err, item) => {
+        if (err){
+            response.sendStatus(500);
+            return console.error(err);
+        }
+        response.sendStatus(200);
+    })
+});
+
+//SERVER SIDE DELETE LOCATION
+//SERVER SIDE DELETE LOCATION
+//SERVER SIDE DELETE LOCATION
+
+app.delete('/location', async (request, response) => {
+    try {
+        await Location.deleteOne({storeName: request.params.storeName});
+        response.sendStatus(204);
+    } catch {
+        response.sendStatus(404);
+        console.log('Didnt find the location!');
+    }
+});
+
+
+
+
+
+
 
 //*********  MY OLD TODO LIST CODE FOR REFERENCE
 //*********  MY OLD TODO LIST CODE FOR REFERENCE
 //*********  MY OLD TODO LIST CODE FOR REFERENCE
+
+
+
 const mongoose = require('mongoose');
 var List = require('./models/ToDo.js'); 
 var Item = require('./models/ToDoItem.js'); 
