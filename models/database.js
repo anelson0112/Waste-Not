@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 /*This is the schema we will use to enter in the actual items available*/ 
 /* for our purposes, it will be much easer to use JSON than XML, all of our items are object oriented which JSON is bbasically made for, it's much easier to read and retrieve data using JSON rather than XML*/
-const Goods = new Schema ({
+const goodsSchema = new Schema ({
     //name of good to sell
     itemName: { type: String, required : true, maxlength: 25},
     /*quantiy of good to sell, making required so if there are none sent in a given day it will have a zero entered and not accidently ommited.*/
@@ -19,7 +19,7 @@ const Goods = new Schema ({
 //we chose to have a schema of Users b/c there are different permission levels and access
 //depending on who is logged in 
 //this schema makes it easy to put the User schema into our other data (which will tie in w/ who is logged in)
-const Users = new Schema ({
+const userSchema = new Schema ({
     //username is stored as a string 
     username: {type: String, required: true, maxlength: 20},
     //password is stored as a string 
@@ -48,7 +48,7 @@ much better fit for the User schema, as it will allow us to easily manipulate an
 
 
 /* Location schema, for keeping location separate, can get loaded into the action and User schema as needed*/
-const Location = new Schema ({
+const locationSchema = new Schema ({
     storeName: {type: String, required: true, maxlength: 25},
 });
 
@@ -56,7 +56,7 @@ const Location = new Schema ({
 
 
 
-Action = new Schema ({
+const actionSchema = new Schema ({
     //date is required and will default to "now" if another date is not input
     date: {type: Date, default: Date.now, required: true},
     //user below is borrowing from User schema to ensure consistency
@@ -123,3 +123,7 @@ var RoomSchema = new Schema(
 
     }
 )*/
+//export schema
+module.exports = mongoose.model.apply("Users", userSchema );
+module.exports = mongoose.model.apply("Location", locationSchema );
+module.exports = mongoose.model.apply("Goods", goodsSchema );
