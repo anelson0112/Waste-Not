@@ -54,7 +54,7 @@ app.get("/goods", function (request, response){
         }
     });
 });
-//get a single item
+//GET SINGLE ITEM
 app.get("/goods/:id", function (request, response){
 
     Goods.findOne({_id: request.params.id},function (err, good){
@@ -66,7 +66,7 @@ app.get("/goods/:id", function (request, response){
         response.status(200).send(good);
     });
 });
-//add new items to the goods list
+//ADD NEW ITEMS TO LIST
 app.post("/goods", function (request, response){
     let newGood = new Goods (request.body);
     newGood.save (function (err, good){
@@ -78,7 +78,7 @@ app.post("/goods", function (request, response){
     });
 });
 
-//delete items from goods list
+//DELETE GOODS FROM LIST
 app.delete("/goods/:id", function (request, response){
 
     Goods.deleteOne({_id: request.params.id}, function (err){
@@ -93,7 +93,7 @@ app.delete("/goods/:id", function (request, response){
     });
 });
 
-//update item on list 
+//uUPDATE ITEM ON LIST 
 app.put("/update/:id", function(request, response){
 
     Goods.findOneAndUpdate({_id:request.params.id}, function(err, good){
@@ -106,7 +106,7 @@ app.put("/update/:id", function(request, response){
         good.save();
     });
 });
-//update part of a good just quantity may not need the put option
+//UPDATE QUANTITY
 app.patch("/goods/:id", function (request, response){
 
     Goods.findOneAndUpdate({_id:request.params.id}, function (err, good){
@@ -120,7 +120,91 @@ app.patch("/goods/:id", function (request, response){
     })
 })
 
+//SERVER SIDE ADD USER
 
+app.post("/users", (request, response) => {
+    console.log(request.body);
+    let user = new User(request.body);
+    user.save((err, item) => {
+        if (err){
+            response.sendStatus(500);
+            return console.error(err);
+        }
+        response.sendStatus(200);
+    })
+});
+
+//SERVER SIDE DELETE USER
+
+// *** I'm unsure what we'll use as the key...perhaps email address???  ****
+app.delete('/users/email', async (request, response) => {
+    try {
+        await User.deleteOne({email: request.params.email});
+        response.sendStatus(204);
+    } catch {
+        response.sendStatus(404);
+        console.log('Didnt find the user!');
+    }
+});
+
+//SERVER SIDE EDIT USER
+
+//**IMPORTANT! We need to decide how to look up the user..I've assumed email.
+//I don't think we need username??  Maybe just email is username??
+
+app.patch('/users/email', (request, response) => {
+    console.log(request.body);
+    var userUpdateId = request.body.email;
+    var userUpdateName = request.body.personName;
+    var userUpdateUsername = request.body.username;
+    var userUpdatePassword = request.body.password;
+    var userUpdateEmail = request.body.email;
+    var userUpdatePhone = request.body.phone;
+    var userUpdateUser_Role = request.body.user_role;
+    console.log(userUpdateId);
+   Item.findByIdAndUpdate(userUpdateId, { 
+            name : userUpdateName,
+            username : userUpdateUsername,
+            password : userUpdatePassword,
+            email : userUpdateEmail,
+            phone : userUpdatePhone,
+            user_role: userUpdateUser_Role
+        }, 
+         function (err, docs) { 
+        if (err){ 
+            console.log(err) 
+            } 
+    else{ 
+        console.log("here's the old user record:"+docs);
+        response.status(200).send({ status: 'OK'})
+    } 
+    }); 
+
+   //SERVER SIDE ADD LOCATION
+
+app.post("/location", (request, response) => {
+    console.log(request.body);
+    let location = new Location(request.body);
+    user.save((err, item) => {
+        if (err){
+            response.sendStatus(500);
+            return console.error(err);
+        }
+        response.sendStatus(200);
+    })
+});
+
+//SERVER SIDE DELETE LOCATION
+
+app.delete('/location', async (request, response) => {
+    try {
+        await Location.deleteOne({storeName: request.params.storeName});
+        response.sendStatus(204);
+    } catch {
+        response.sendStatus(404);
+        console.log('Didnt find the location!');
+    }
+});
 
 
 
