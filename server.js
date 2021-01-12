@@ -1,0 +1,248 @@
+//require mongoose-translates Node.js
+const mongoose = require ("mongoose");
+//require body parser
+const bodyParser = require('body-parser');
+//call in schema models
+var Goods = require ("./models.models.js");
+var Users = require ("./models.models.js");
+var Locations = require ("./models.models.js");
+//require express
+const express = require("express");
+//call in express
+const app = express();
+//add path library
+const path = require("path");
+
+//connect to Atlas cluster
+const mongoDB = "mongodb+srv://wastenotskilledkc:madANDal4life2021@wastenot1.sj0ff.mongodb.net/test"
+
+
+//accessing the connect method of mongoose
+//pass it the name of the DB cluster we have created
+//mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true}, (err, client) => {
+    if(err) return console.error(err);
+    console.log('Connected to database');
+    });
+const db = mongoose.connection;
+
+//turns on the connection
+db.on('error', console.error.bind(console, 'connection error:'));
+
+
+//use the following middlware
+app.use(
+    //middleware for delivering static files
+    express.static(
+        //uses path library to take care of relative paths
+        path.join(__dirname, 'public')));
+
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:true}));
+
+/* Here starts the API Calls*/
+
+//get a list of all the goods
+app.get("/goods", function (request, response){
+
+    Goods.find (function(err, goods){
+        if (err){
+            return console.error(err);
+            response.send(goods);
+            
+        }
+    });
+});
+//GET SINGLE ITEM
+app.get("/goods/:id", function (request, response){
+
+    Goods.findOne({_id: request.params.id},function (err, good){
+        if (err){
+        console.error(err);
+        return;
+        }
+        console.log(good);
+        response.status(200).send(good);
+    });
+});
+//ADD NEW ITEMS TO LIST
+app.post("/goods", function (request, response){
+    let newGood = new Goods (request.body);
+    newGood.save (function (err, good){
+        if (err){
+            response.sendStatus(500);
+            return console.error(err);
+        }
+        response.send(good);
+    });
+});
+
+//DELETE GOODS FROM LIST
+app.delete("/goods/:id", function (request, response){
+
+    Goods.deleteOne({_id: request.params.id}, function (err){
+        
+        if (err){
+            console.error(err);
+            return
+        } 
+        console.log("deleted");
+        response.sendStatus(204);
+
+    });
+});
+
+//uUPDATE ITEM ON LIST 
+app.put("/update/:id", function(request, response){
+
+    Goods.findOneAndUpdate({_id:request.params.id}, function(err, good){
+        if (err) {
+            response.sendStatus(500);
+            return console.error(err);
+        }
+        console.log("item updated")
+        response.sendStatus(200);
+        good.save();
+    });
+});
+//UPDATE QUANTITY
+app.patch("/goods/:id", function (request, response){
+
+    Goods.findOneAndUpdate({_id:request.params.id}, function (err, good){
+        if (err){
+            console.error(err);
+            return
+        }
+        console.log("qty updated");
+        response.statud(200);
+        good.save();
+    })
+})
+
+//SERVER SIDE ADD USER
+
+app.post("/users", (request, response) => {
+    console.log(request.body);
+    let user = new User(request.body);
+    user.save((err, item) => {
+        if (err){
+            response.sendStatus(500);
+            return console.error(err);
+        }
+        response.sendStatus(200);
+    })
+});
+
+//SERVER SIDE DELETE USER
+
+// *** I'm unsure what we'll use as the key...perhaps email address???  ****
+app.delete('/users/email', async (request, response) => {
+    try {
+        await User.deleteOne({email: request.params.email});
+        response.sendStatus(204);
+    } catch {
+        response.sendStatus(404);
+        console.log('Didnt find the user!');
+    }
+});
+
+//SERVER SIDE EDIT USER
+
+//**IMPORTANT! We need to decide how to look up the user..I've assumed email.
+//I don't think we need username??  Maybe just email is username??
+
+app.patch('/users/email', (request, response) => {
+    console.log(request.body);
+    var userUpdateId = request.body.email;
+    var userUpdateName = request.body.personName;
+    var userUpdateUsername = request.body.username;
+    var userUpdatePassword = request.body.password;
+    var userUpdateEmail = request.body.email;
+    var userUpdatePhone = request.body.phone;
+    var userUpdateUser_Role = request.body.user_role;
+    console.log(userUpdateId);
+   Item.findByIdAndUpdate(userUpdateId, { 
+            name : userUpdateName,
+            username : userUpdateUsername,
+            password : userUpdatePassword,
+            email : userUpdateEmail,
+            phone : userUpdatePhone,
+            user_role: userUpdateUser_Role
+        }, 
+         function (err, docs) { 
+        if (err){ 
+            console.log(err) 
+            } 
+    else{ 
+        console.log("here's the old user record:"+docs);
+        response.status(200).send({ status: 'OK'})
+    } 
+    }); 
+
+   //SERVER SIDE ADD LOCATION
+
+app.post("/location", (request, response) => {
+    console.log(request.body);
+    let location = new Location(request.body);
+    user.save((err, item) => {
+        if (err){
+            response.sendStatus(500);
+            return console.error(err);
+        }
+        response.sendStatus(200);
+    })
+});
+
+//SERVER SIDE DELETE LOCATION
+
+app.delete('/location', async (request, response) => {
+    try {
+        await Location.deleteOne({storeName: request.params.storeName});
+        response.sendStatus(204);
+    } catch {
+        response.sendStatus(404);
+        console.log('Didnt find the location!');
+    }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
