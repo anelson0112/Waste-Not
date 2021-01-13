@@ -85,8 +85,8 @@ async function addUser(){
         throw Error('User not saved!');
     } 
     return alert('New user added');
-    //this code commented out below would reload the appropriate page after the add  
-    //window.location.href = 'index.html';
+    //this code reloads the appropriate page after the add  
+    window.location.href = 'index.html';
     return true;
 }
 
