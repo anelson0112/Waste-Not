@@ -1,13 +1,13 @@
-use strict;
+"use strict"
 
 class User {
      constructor(name, username, password, email, phone, user_role){
-    let this.name=name;
-    let this.username=username;
-    let this.password = password;
-    let this.email = email;
-    let this.phone=phone;
-    let this.user_role = user_role;
+    this.name=name;
+    this.username=username;
+    this.password = password;
+    this.email = email;
+    this.phone=phone;
+    this.user_role = user_role;
     };
     
     function addUser_BackS (){};
