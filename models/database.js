@@ -48,7 +48,7 @@ const locationSchema = new Schema ({
 
 
 
-
+//COMMENTING OUT FOR NOW TO GET LOGIN WORK DONE 01/14/21
 
 const actionSchema = new Schema ({
     //date is required and will default to "now" if another date is not input
@@ -70,6 +70,8 @@ const actionSchema = new Schema ({
     newUser: {type: Schema.type.Objectid, ref:User, required: true},
     newLocation: {type: Schema.type.Objectid, ref:Location}
     });
+
+
 
     /*Regarding XML v JSON: here's an interesting article from StackOverflow
     https://stackoverflow.com/questions/325085/when-to-prefer-json-over-xml
