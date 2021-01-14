@@ -26,14 +26,8 @@ const userSchema = new Schema ({
     password: {type: String, required: true, maxlength: 20},
     //email is stored as a string, email must be unique  
     email: {type: String, required: true, unique: true},
-    //there are different permission levels depending on the user 
-    //this lists the different user types as an array and looks for the Boolean value to be true
-    //creating an array makes it easier to iterate over the data to see which permission level/user is selected/logged in  
-    permissions: [{
-        admin: {type: Boolean},
-        barista: {type: Boolean},
-        bakery: {type: Boolean}, 
-    }],
+    //there are different permission levels depending on the user  
+    permissions: { type: String, enum: ['None', 'Admin', 'Barista', 'Bakery'] }
 });
 
 /*For the User schema: Pros and cons of developing the documents in XML vs JSON- 
