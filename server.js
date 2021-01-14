@@ -3,12 +3,14 @@ const mongoose = require ("mongoose");
 //require body parser
 const bodyParser = require('body-parser');
 //call in schema models
-var Goods = require ("./models.models.js");
-var User = require ("./models.models.js");
-var Location = require ("./models.models.js");
+
+var Goods = require ("./models/database.js");
+var User = require ("./models/database.js");
+var Location = require ("./models/database.js");
 //require express
 const express = require("express");
-//call in express
+//call in expressnpm kickoff
+
 const app = express();
 //add path library
 const path = require("path");

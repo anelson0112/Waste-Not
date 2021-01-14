@@ -56,26 +56,27 @@ const locationSchema = new Schema ({
 
 
 
-const actionSchema = new Schema ({
-    //date is required and will default to "now" if another date is not input
-    date: {type: Date, default: Date.now, required: true},
-    //user below is borrowing from User schema to ensure consistency
-    user: {type: Schema.type.Objectid, ref:User, required: true},
-    //item is similar to user except references Goods schema
-    item: {type:Schema.type.Objectid, ref:Goods},
-    //for the different "states" of items, using enumeration to limit the choices of answers for the string
-    itemState: { type: String, enum: ['waste', 'panic', 'for_sale', 'day_old'] },
-    //borrowing from location schema
-    location: {type: Schema.type.Objectid, ref:Location},
-    //if an item state is declared, a quantity will be input as a number
-    qty: Number,
-    //some actions are done by admins, and a type is registered with limited choices
-    adminAct:{ type: String, enum: ['add', 'delete', 'modify'] },
-    //these last two are for setting up new, delete, or modifying a user or location
-    //again borrowing from the proper schema for consistency
-    newUser: {type: Schema.type.Objectid, ref:User, required: true},
-    newLocation: {type: Schema.type.Objectid, ref:Location}
-    });
+// const actionSchema = new Schema ({
+    
+//     //date is required and will default to "now" if another date is not input
+//     date: {type: Date, default: Date.now, required: true},
+//     //user below is borrowing from User schema to ensure consistency
+//     user: {type: Schema.type, ref:User, required: true},
+//     //item is similar to user except references Goods schema
+//     item: {type:Schema.type, ref:Goods},
+//     //for the different "states" of items, using enumeration to limit the choices of answers for the string
+//     itemState: { type: String, enum: ['waste', 'panic', 'for_sale', 'day_old'] },
+//     //borrowing from location schema
+//     location: {type: Schema.type, ref:Location},
+//     //if an item state is declared, a quantity will be input as a number
+//     qty: Number,
+//     //some actions are done by admins, and a type is registered with limited choices
+//     adminAct:{ type: String, enum: ['add', 'delete', 'modify'] },
+//     //these last two are for setting up new, delete, or modifying a user or location
+//     //again borrowing from the proper schema for consistency
+//     newUser: {type: Schema.type, ref:User, required: true},
+//     newLocation: {type: Schema.type, ref:Location}
+//     });
 
     /*Regarding XML v JSON: here's an interesting article from StackOverflow
     https://stackoverflow.com/questions/325085/when-to-prefer-json-over-xml
@@ -124,6 +125,6 @@ var RoomSchema = new Schema(
     }
 )*/
 //export schema
-module.exports = mongoose.model.apply("Users", userSchema );
-module.exports = mongoose.model.apply("Location", locationSchema );
-module.exports = mongoose.model.apply("Goods", goodsSchema );
+module.exports = mongoose.model("User", userSchema );
+module.exports = mongoose.model("Location", locationSchema );
+module.exports = mongoose.model("Goods", goodsSchema );
