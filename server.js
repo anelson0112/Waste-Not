@@ -79,13 +79,15 @@ app.get("/goods/:id", function (request, response){
 });
 //ADD NEW ITEMS TO LIST
 app.post("/goods", function (request, response){
+    console.log(request.body);
     let newGood = new Goods (request.body);
-    newGood.save (function (err, good){
+    newGood.save (function (err, item){
         if (err){
             response.sendStatus(500);
             return console.error(err);
         }
-        response.send(good);
+        //console.log(request.body);
+        response.send(item);
     });
 });
 

@@ -6,10 +6,17 @@ const Schema = mongoose.Schema;
 /* for our purposes, it will be much easer to use JSON than XML, all of our items are object oriented which JSON is bbasically made for, it's much easier to read and retrieve data using JSON rather than XML*/
 const goodsSchema = new Schema ({
     //name of good to sell
-    itemName: { type: String, required : true, maxlength: 25},
+    itemName: { 
+        
+        type: String, 
+        //required : true,
+        maxlength: 25},
     
     /*quantiy of good to sell, making required so if there are none sent in a given day it will have a zero entered and not accidently ommited.*/
-    itemQty: {type: Number, default : 0},
+    itemQty: {
+        
+        type: Number, 
+        default : 0},
     /*price is price, read that you could require USD or decimal, but that is extranious and unneccesary*/
     //itemPrice: {type: Number, required: true},
     

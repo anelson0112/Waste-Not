@@ -17,7 +17,7 @@ body{
 }
 
 
-button{
+button btn btn-primary{
 
     border-radius: 8px;
     width: 50%;
