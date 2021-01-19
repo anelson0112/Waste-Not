@@ -3,12 +3,14 @@ const mongoose = require ("mongoose");
 //require body parser
 const bodyParser = require('body-parser');
 //call in schema models
-var Goods = require ("./models.models.js");
-var User = require ("./models.models.js");
-var Location = require ("./models.models.js");
+
+var Goods = require ("./models/database.js");
+var User = require ("./models/database.js");
+var Location = require ("./models/database.js");
 //require express
 const express = require("express");
-//call in express
+//call in expressnpm kickoff
+
 const app = express();
 //add path library
 const path = require("path");
@@ -17,13 +19,13 @@ const path = require("path");
 const port = 3000;
 
 //connect to Atlas cluster
-const mongoDB = "mongodb+srv://wastenotskilledkc:madANDal4life2021@wastenot1.sj0ff.mongodb.net/test"
+const mongoDB = "mongodb+srv://wastenotskilledkc:madANDal4life2021@wastenot1.sj0ff.mongodb.net/WasteNot1?retryWrites=true&w=majority";
 
 
 //accessing the connect method of mongoose
 //pass it the name of the DB cluster we have created
 //mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true});
-mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true}, (err, client) => {
+mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true,}, (err, client) => {
     if(err) return console.error(err);
     console.log('Connected to database');
     });
@@ -77,13 +79,15 @@ app.get("/goods/:id", function (request, response){
 });
 //ADD NEW ITEMS TO LIST
 app.post("/goods", function (request, response){
+    console.log(request.body);
     let newGood = new Goods (request.body);
-    newGood.save (function (err, good){
+    newGood.save (function (err, item){
         if (err){
             response.sendStatus(500);
             return console.error(err);
         }
-        response.send(good);
+        //console.log(request.body);
+        response.send(item);
     });
 });
 
