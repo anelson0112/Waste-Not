@@ -19,13 +19,13 @@ const path = require("path");
 const port = 3000;
 
 //connect to Atlas cluster
-const mongoDB = "mongodb+srv://wastenotskilledkc:madANDal4life2021@wastenot1.sj0ff.mongodb.net/test"
+const mongoDB = "mongodb+srv://wastenotskilledkc:madANDal4life2021@wastenot1.sj0ff.mongodb.net/WasteNot1?retryWrites=true&w=majority";
 
 
 //accessing the connect method of mongoose
 //pass it the name of the DB cluster we have created
 //mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true});
-mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true}, (err, client) => {
+mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true,}, (err, client) => {
     if(err) return console.error(err);
     console.log('Connected to database');
     });
