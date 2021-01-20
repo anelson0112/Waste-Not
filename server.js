@@ -58,27 +58,27 @@ app.listen(port, function(){
 app.get("/goods", function (request, response){
 
     Goods.find (function(err, goods){
-        if (err){
+        if (err)
             return console.error(err);
             response.send(goods);
             
-        }
+        
     });
 });
 //GET SINGLE ITEM
-app.get("/goods/:id", function (request, response){
+app.get("/good/:id", function (request, response){
 
     Goods.findOne({_id: request.params.id},function (err, good){
         if (err){
         console.error(err);
         return;
         }
-        console.log(good);
+        console.log(good + "found one");
         response.status(200).send(good);
     });
 });
 //ADD NEW ITEMS TO LIST
-app.post("/goods", function (request, response){
+app.post("/good", function (request, response){
     console.log(request.body);
     let newGood = new Goods (request.body);
     newGood.save (function (err, item){

@@ -62,7 +62,7 @@
                     <button type="submit" id = "addLocation">Add Location</button>
                 </div>
                 <div class="col-lg-6">    
-                    <button type="submit" id = "goToWorkAdmin">Go to Work Day</button>
+                    <button type="submit" id = "goToWorkAdmin" onclick = "displayWorkDayMenu()">Go to Work Day</button>
                 </div>
             </div>
         </div>
@@ -71,8 +71,9 @@
         <div id = "workDayMenu" class = "container h-100" style="display: none">
             <div class = "row">
                 <div class = "col-lg-6">
-                    <button type="submit" id = "enterInventory">Enter Inventory</button>
-                </div>    
+                    <a class = " button btn btn-defult" href = "inventoryUpdate.html" role = "button" >Update Inventory</a>
+                </div>
+               
                 <div class="col-lg-6">
                     <button type="submit" id = "goToWork">Go To Work</button>
                 </div>
