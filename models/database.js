@@ -9,7 +9,7 @@ const goodsSchema = new Schema ({
     itemName: { 
         
         type: String, 
-        //required : true,
+        required : true,
         maxlength: 25},
     
     /*quantiy of good to sell, making required so if there are none sent in a given day it will have a zero entered and not accidently ommited.*/
@@ -19,7 +19,7 @@ const goodsSchema = new Schema ({
         default : 0},
     /*price is price, read that you could require USD or decimal, but that is extranious and unneccesary*/
     //itemPrice: {type: Number, required: true},
-    
+        
 });
 
 
