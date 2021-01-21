@@ -1,5 +1,8 @@
 //require mongoose-translates Node.js
 const mongoose = require ("mongoose");
+mongoose.set('useFindAndModify', false);
+//returns object AFTER update was applied
+mongoose.set('returnOriginal', false);
 //require body parser
 const bodyParser = require('body-parser');
 //call in schema models
@@ -7,6 +10,9 @@ const bodyParser = require('body-parser');
 var Goods = require ("./models/database.js");
 var User = require ("./models/database.js");
 var Location = require ("./models/database.js");
+// to add id into the schema
+const ObjectId = mongoose.Types.ObjectId;
+const _id = new ObjectId;
 //require express
 const express = require("express");
 //call in expressnpm kickoff
@@ -68,7 +74,7 @@ app.get("/goods", function (request, response){
 //GET SINGLE ITEM
 app.get("/good/:id", function (request, response){
 
-    Goods.findOne({_id: request.params.id},function (err, good){
+    Goods.findOne({_id},function (err, good){
         if (err){
         console.error(err);
         return;
@@ -106,30 +112,22 @@ app.delete("/goods/:id", function (request, response){
     });
 });
 
-//uUPDATE ITEM ON LIST 
-app.put("/update/:id", function(request, response){
 
-    Goods.findOneAndUpdate({_id:request.params.id}, function(err, good){
-        if (err) {
-            response.sendStatus(500);
-            return console.error(err);
-        }
-        console.log("item updated")
-        response.sendStatus(200);
-        good.save();
-    });
-});
 //UPDATE QUANTITY
-app.patch("/goods/:id", function (request, response){
-
-    Goods.findOneAndUpdate({_id:request.params.id}, function (err, good){
+app.post("/goods/", function (request, response){
+    let updatedQty = new Goods(request.body);
+    Goods.updateOne({_id}, {
+        itemName : updatedQty.itemName,
+        itemQty  : updatedQty.itemQty,   
+    } ,
+    function (err, good){
         if (err){
             console.error(err);
-            return
+            return body;
         }
         console.log("qty updated");
-        response.statud(200);
-        good.save();
+        response.status(200);
+        //good.save();
     })
 })
 
