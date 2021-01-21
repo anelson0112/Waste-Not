@@ -19,13 +19,13 @@ const path = require("path");
 const port = 3000;
 
 //connect to Atlas cluster
-const mongoDB = "mongodb+srv://wastenotskilledkc:madANDal4life2021@wastenot1.sj0ff.mongodb.net/test"
+const mongoDB = "mongodb+srv://wastenotskilledkc:madANDal4life2021@wastenot1.sj0ff.mongodb.net/WasteNot1?retryWrites=true&w=majority";
 
 
 //accessing the connect method of mongoose
 //pass it the name of the DB cluster we have created
 //mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true});
-mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true}, (err, client) => {
+mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true,}, (err, client) => {
     if(err) return console.error(err);
     console.log('Connected to database');
     });
@@ -58,34 +58,40 @@ app.listen(port, function(){
 app.get("/goods", function (request, response){
 
     Goods.find (function(err, goods){
-        if (err){
+        if (err)
             return console.error(err);
             response.send(goods);
             
-        }
+        
     });
 });
 //GET SINGLE ITEM
-app.get("/goods/:id", function (request, response){
+
+app.get("/good/:id", function (request, response){
+
 
     Goods.findOne({_id: request.params.id},function (err, good){
         if (err){
         console.error(err);
         return;
         }
-        console.log(good);
+        console.log(good + "found one");
         response.status(200).send(good);
     });
 });
 //ADD NEW ITEMS TO LIST
-app.post("/goods", function (request, response){
+
+app.post("/good", function (request, response){
+    console.log(request.body);
+
     let newGood = new Goods (request.body);
-    newGood.save (function (err, good){
+    newGood.save (function (err, item){
         if (err){
             response.sendStatus(500);
             return console.error(err);
         }
-        response.send(good);
+        //console.log(request.body);
+        response.send(item);
     });
 });
 

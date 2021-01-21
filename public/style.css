@@ -1,0 +1,87 @@
+
+/* font-family: 'Fredericka the Great', cursive;
+font-family: 'Open Sans', sans-serif; */
+body{
+    font-family: 'Open Sans', sans-serif;
+    background-color: #769307;
+    color: #2F4858;
+    
+}
+#header {
+    font-family: 'Fredericka the Great';
+    font-size: xx-large;
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+    color: #AD102F;
+}
+
+
+button btn btn-primary{
+
+    border-radius: 8px;
+    width: 50%;
+    text-align: center;
+    margin: 20px;
+    padding: 5px;
+
+
+}
+
+#login {
+
+    width: 50%;
+    text-align: left;
+    padding: 20px;
+
+
+}
+#admin{
+    margin: 20px;
+    padding: 20px;
+    text-align: center;
+
+}
+#workDayMenu{
+    margin: 20px;
+    padding: 20px;
+    text-align: center;
+}
+.container{
+    border-radius: 5px;
+    background-color:#BFA5A4;
+    padding: 20px;
+    margin:  auto;
+    
+    
+}
+/* .col-md-4{
+    float: left;
+    width: 25%;
+    margin-top: 6px;
+}
+.col-md-8{
+    float: left;
+    width: 25%;
+    margin-top: 6px;
+} */
+input{
+    width: 100%;
+    padding: 12px;
+    border: 1px solid;
+    border-radius: 4px;
+    margin: 5px;
+}
+@media screen and (max-width: 600px) {
+    .col-25, .col-75, input[type=submit] {
+      width: 100%;
+      margin-top: 0;
+    }
+}
+/*
+colors from pallet
+The Red:#AD102F
+background? lightes color #BFA5A4
+darger purply color #897170
+darker green #416000
+lighter green #769307 */
