@@ -63,12 +63,13 @@ async function addUser(){
  
     let user = {
         name : document.getElementById("personName").value, 
-        username : document.getElementById('username').value,
         password : document.getElementById("password").value,
         email : document.getElementById('email').value,
         phone : document.getElementById('phone').value,
-//****We need to change User Schema to just role string values... */
-        user_role: document.querySelector('input[name="user_role"]:checked').value
+        //commented line below out because new adds will always have user role of None
+       // user_role: document.querySelector('input[name="user_role"]:checked').value
+        user_role: 'None'
+
     } 
 
    console.log (user);

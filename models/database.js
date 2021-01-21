@@ -21,13 +21,15 @@ const goodsSchema = new Schema ({
 //this schema makes it easy to put the User schema into our other data (which will tie in w/ who is logged in)
 const userSchema = new Schema ({
     //username is stored as a string 
-    username: {type: String, required: true, maxlength: 20},
+    name: {type: String, required: true, maxlength: 30},
     //password is stored as a string 
     password: {type: String, required: true, maxlength: 20},
     //email is stored as a string, email must be unique  
     email: {type: String, required: true, unique: true},
+    //phone is stored as a string, email must be unique  
+    phone: {type: String, required: true},
     //there are different permission levels depending on the user  
-    permissions: { type: String, enum: ['None', 'Admin', 'Barista', 'Bakery'] }
+    user_role: { type: String, enum: ['None', 'Admin', 'Barista', 'Bakery'] }
 });
 
 /*For the User schema: Pros and cons of developing the documents in XML vs JSON- 
