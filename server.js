@@ -66,7 +66,9 @@ app.get("/goods", function (request, response){
     });
 });
 //GET SINGLE ITEM
+
 app.get("/good/:id", function (request, response){
+
 
     Goods.findOne({_id: request.params.id},function (err, good){
         if (err){
@@ -78,8 +80,10 @@ app.get("/good/:id", function (request, response){
     });
 });
 //ADD NEW ITEMS TO LIST
+
 app.post("/good", function (request, response){
     console.log(request.body);
+
     let newGood = new Goods (request.body);
     newGood.save (function (err, item){
         if (err){
