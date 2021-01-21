@@ -4,9 +4,10 @@ const mongoose = require ("mongoose");
 const bodyParser = require('body-parser');
 //call in schema models
 
-var Goods = require ("./models/database.js");
-var User = require ("./models/database.js");
-var Location = require ("./models/database.js");
+var Goods = require ("./models/goodsDatabase.js");
+var User = require ("./models/userDatabase.js");
+var Location = require ("./models/locationDatabase.js");
+var Action = require ("./models/actionDatabase.js");
 //require express
 const express = require("express");
 //call in expressnpm kickoff

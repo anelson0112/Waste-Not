@@ -38,7 +38,7 @@ console.log (user);
      throw Error('User not saved!');
  } 
     alert('New user added');
- return body;
+ return true;
  //this code reloads the appropriate page after the add  
  window.location.href = 'user-updates.html';
 
