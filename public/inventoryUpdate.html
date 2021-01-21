@@ -17,7 +17,13 @@
             </div>
         </div> 
         <div class="container" >
-            <form name = "updateQTY" id = "itemList" class = "itemList" data-id = "${body[i]._id}"></form>
+            <form name = "update" id = "updateQTY" class = "itemList" data-id = "${body[i]._id}">
+            <div class="row"> 
+                <div class="col-lg-6">   
+                    <button id = "updateButton" type="submit">Submit</button>
+                </div>
+            </div>
+            </form>
         
         </div>
 
@@ -26,19 +32,17 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         <script src ="inventoryUpdate.js"></script>
         
-
-        <div class = "goodsList" data-id = "${body[i]._id}">
+       
+        <!-- template for adding html in js file
             <div class = "row">
-                <div class = "list col-lg-8" data-id="${body[i]._id}">Item Name: ${body[i].itemName}
-
+                <div class = "list col-lg-10" data-id="${body[i]._id}" id = "itemName">Item Name: ${body[i].itemName} 
                 </div>
-            </div>
-            <div class = "qty col-lg-4">
-                <label for = "qty">Quantity</label><br>
-                <input type = "number" id = "qty" name = "qty" data-id="${body[i]._id}">
-            </div>
-        </div>
-
+            
+                <div class = "qty col-lg-2">
+                    <label for = "qty">Quantity</label>
+                    <input type = "number" id = "qty" name = "qty" data-id="${body[i]._id}">
+                </div>
+            </div> -->
 
 
         </body>
