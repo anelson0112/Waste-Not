@@ -7,12 +7,12 @@ mongoose.set('returnOriginal', false);
 const bodyParser = require('body-parser');
 //call in schema models
 
-var Goods = require ("./models/database.js");
-var User = require ("./models/database.js");
-var Location = require ("./models/database.js");
-// to add id into the schema
-const ObjectId = mongoose.Types.ObjectId;
-const _id = new ObjectId;
+
+var Goods = require ("./models/goodsDatabase.js");
+var User = require ("./models/userDatabase.js");
+var Location = require ("./models/locationDatabase.js");
+var Action = require ("./models/actionDatabase.js");
+
 //require express
 const express = require("express");
 //call in expressnpm kickoff
@@ -147,6 +147,16 @@ app.post("/users", (request, response) => {
             return console.error(err);
         }
         response.sendStatus(200);
+    })
+});
+
+
+// SERVER SIDE FIND USER
+app.get('/users', (request, response) => {
+    console.log(request.params.email);
+    User.findOne({email: `${request.params.email}`}).exec((err, user) => {
+        if (err) return console.error(err);
+        response.send(user);
     })
 });
 
