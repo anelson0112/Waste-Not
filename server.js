@@ -152,6 +152,16 @@ app.post("/users", (request, response) => {
     })
 });
 
+
+// SERVER SIDE FIND USER
+app.get('/users', (request, response) => {
+    console.log(request.params.email);
+    User.findOne({email: `${request.params.email}`}).exec((err, user) => {
+        if (err) return console.error(err);
+        response.send(user);
+    })
+});
+
 //SERVER SIDE DELETE USER
 
 // *** I'm unsure what we'll use as the key...perhaps email address???  ****
