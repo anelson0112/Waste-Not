@@ -154,7 +154,7 @@ app.post("/users", (request, response) => {
 
 
 // SERVER SIDE FIND USER
-app.get('/users', (request, response) => {
+app.get('/users/:email', (request, response) => {
     console.log(request.params.email);
     User.findOne({email: `${request.params.email}`}).exec((err, user) => {
         if (err) return console.error(err);
