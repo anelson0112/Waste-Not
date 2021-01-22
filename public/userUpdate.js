@@ -91,6 +91,8 @@ function clickGetUser(lookupEmail){
          console.log(body); 
      }).catch(function(err){
          console.log(err);
+         alert('Email not found in database');
+         window.location.href = 'user-updates.html';
      });
  };
 
@@ -107,6 +109,7 @@ async function getUser(lookupEmail){
     const body = await response.json();
     if (response.status != 200){
         throw Error('Error!');
+        
     }
     return body;
 }
