@@ -175,7 +175,7 @@ app.get('/users/:email', (request, response) => {
 
 app.delete('/users/:id', (request, response) => {
     console.log(request.params.id);
-    User.deleteOne({id: request.params.id},function(err){
+    User.deleteOne({_id: request.params.id},function(err){
         if (err){
             console.error(err)
             console.log('Didnt find the user!')
