@@ -11,6 +11,8 @@ function clickAddUserByAdmin(){
 
   }).catch(function(err){
       console.log(err);
+      alert("You are missing a field - all fields are required")
+      alert("This email is already taken - please use another email address")
   });
 };
 
@@ -21,9 +23,7 @@ async function addUser(){
      password : document.getElementById("editPassword").value,
      email : document.getElementById('editEmail').value,
      phone : document.getElementById('editPhone').value,
-     //commented line below out because new adds will always have user role of None
      user_role: document.querySelector('input[name="editUserRole"]:checked').value
-     //user_role: 'None'
 
  } 
 
@@ -41,10 +41,8 @@ console.log (user);
      throw Error('User not saved!');
  } 
     alert('New user added');
- return true;
- //this code reloads the appropriate page after the add  
- window.location.href = 'user-updates.html';
-
+    window.location.href = 'user-updates.html';
+ return true
 }
 
 //CLIENT SIDE FIND USER
@@ -62,13 +60,17 @@ function clickGetUser(lookupEmail){
    
 
         let showUserRole=body.user_role;
+        var editUserSysId = document.getElementById('editUserSection');
         console.log(showUserRole);
+        console.log(body._id)
         
         //User Info into HTML Page
         document.getElementById('editName').value=body.name;
         document.getElementById('editEmail').value=body.email;
         document.getElementById('editPhone').value=body.phone;
         document.getElementById('editPassword').value=body.password;
+        editUserSysId.setAttribute('data-id',body._id);
+        console.log("Here's the system id "+document.getElementById('editUserSection').getAttribute('data-id'));
         //Switch Case for User Role 
         switch (showUserRole) {
             case "None":
@@ -91,6 +93,8 @@ function clickGetUser(lookupEmail){
          console.log(body); 
      }).catch(function(err){
          console.log(err);
+         alert('Email not found in database');
+         window.location.href = 'user-updates.html';
      });
  };
 
@@ -107,28 +111,100 @@ async function getUser(lookupEmail){
     const body = await response.json();
     if (response.status != 200){
         throw Error('Error!');
+        
     }
     return body;
 }
-// async function itemEditCard(body) {
-//     //code line below empties card so no dups on extra presses :)
-//     $("#editId").empty();
-//     // Function for display article data and generating a bootstrap card
-//     let card = "<div class='card bg-dark text-center mx-auto col col-sm-4'>";
-//     card += "<div class='card-header'>"+ "Assignee: "+ body.assignee +"</div>";
-//     card += "<div class='card-body'>";
-//     card += "<h5 class='card-title'>" + body.itemName + "</h5>";
-//     card += "<p class='card-text'>" + "Priority: "+ body.itemPriority + "</p>";
-//     card += "<p class='card-text'>" + "Completed?  "+body.completed + "</p>";
-//     card += "<p class='card-text'><small>" + "Last Updated: "+body.updatedAt + "</small></p>";
-//     card += "</div>";
-//     card += "<div class='card-footer'><small>"+"System ID: "+body._id +"</small></div>"
-//     card += "<button onclick='clickUpdateToDo(\"" +body._id+ "\")' class='radio btn btn-primary'>Click to Update</button>"
-//     card += "<br>";
-//     card += "</div>";
 
-//     // Append the new item card to the item section section div
-//     editCardData = body;
-//     console.log(editCardData);
-//     $("#editId").append(card)
-// };
+//CLIENT SIDE DELETE USER
+//CLIENT SIDE DELETE USER
+//CLIENT SIDE DELETE USER
+
+function clickDeleteUser(deleteId){
+   deleteId = document.getElementById('editUserSection').getAttribute('data-id'); 
+   //deleteEmail = document.getElementById('editEmail').value;
+    var r = confirm("Continue delete?");
+    if (r == true) {
+        deleteUser(deleteId).then(function(deleteId){  
+          
+            console.log(deleteId); 
+    
+         }).catch(function(err){
+             console.log(err);
+         });
+    } else {
+    return alert('Delete canceled');
+    };
+    
+console.log(deleteId); 
+};
+
+ async function deleteUser(deleteId){
+        let requestOptions = {
+        method: 'DELETE',
+        headers: {'Content-Type': 'application/json'}
+    }
+        
+    const response = await fetch('/users/'+deleteId, requestOptions);
+    if (response.status != 204){
+        throw Error('User not deleted!');
+    }
+    alert('User delete completed');
+    window.location.href = 'user-updates.html';
+    return true;
+};
+
+
+
+//CLIENT SIDE EDIT USER
+//CLIENT SIDE EDIT USER
+//CLIENT SIDE EDIT USER
+
+
+
+function clickUpdateUser(editedId){
+    editedId = document.getElementById('editUserSection').getAttribute('data-id');
+    console.log(editedId);
+
+   
+    updateUser(editedId).then(function(body){
+             
+              console.log(body); 
+    
+    
+             
+         }).catch(function(err){
+             console.log(err);
+         });
+     };
+
+async function updateUser(editedId){
+   //var newCompleted =  JSON.parse(document.querySelector('input[name="editItemCompleted"]:checked').value);
+    console.log(editedId);
+    let editedUser = {
+        _id: editedId,
+        name : document.getElementById("editName").value, 
+        password : document.getElementById("editPassword").value,
+        email : document.getElementById('editEmail').value,
+        phone : document.getElementById('editPhone').value,
+        user_role: document.querySelector('input[name="editUserRole"]:checked').value
+};
+    console.log(editedUser);
+
+    let requestOptions = {
+        method: 'PATCH',
+        body: JSON.stringify(editedUser),
+        headers: {'Content-Type': 'application/json'}
+    }
+
+    const response = await fetch('/users/'+editedId, requestOptions); //items...handle the Patch call no eed    + editId
+    // const response = await fetch('/users', requestOptions); //items...handle the Patch call no eed    + editId
+    const body = await response.json();
+
+    if (response.status != 200){
+        throw Error('Error - update not saved!');
+    }
+    alert('Update saved!');
+    window.location.href = 'user-updates.html';
+    return true;
+};
