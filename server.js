@@ -162,35 +162,54 @@ app.get('/users/:email', (request, response) => {
 
 //SERVER SIDE DELETE USER
 
-// *** I'm unsure what we'll use as the key...perhaps email address???  ****
-app.delete('/users/email', async (request, response) => {
-    try {
-        await User.deleteOne({email: request.params.email});
-        response.sendStatus(204);
-    } catch {
-        response.sendStatus(404);
-        console.log('Didnt find the user!');
-    }
+// app.delete('/users/:email', async (request, response) => {
+//     console.log(request.params.email);
+//     try {
+//         await User.deleteOne({email: `${request.params.email}`});
+//         response.sendStatus(204);
+//     } catch {
+//         response.sendStatus(404);
+//         console.log('Didnt find the user!');
+//     }
+// });
+
+app.delete('/users/:id', (request, response) => {
+    console.log(request.params.id);
+    User.deleteOne({id: request.params.id},function(err){
+        if (err){
+            console.error(err)
+            console.log('Didnt find the user!')
+            return
+    } 
+    console.log("deleted");
+    response.sendStatus(204);
+    });
 });
+
+// Goods.deleteOne({_id: request.params.id}, function (err){
+        
+//     if (err){
+//         console.error(err);
+//         return
+//     } 
+//     console.log("deleted");
+//     response.sendStatus(204);
+
+// });
 
 //SERVER SIDE EDIT USER
 
-//**IMPORTANT! We need to decide how to look up the user..I've assumed email.
-//I don't think we need username??  Maybe just email is username??
-
-app.patch('/users/email', (request, response) => {
+app.patch('/users/:_id', (request, response) => {
     console.log(request.body);
-    var userUpdateId = request.body.email;
-    var userUpdateName = request.body.personName;
-    var userUpdateUsername = request.body.username;
+    var userUpdateId = request.body._id
+    var userUpdateName = request.body.name;
     var userUpdatePassword = request.body.password;
     var userUpdateEmail = request.body.email;
     var userUpdatePhone = request.body.phone;
     var userUpdateUser_Role = request.body.user_role;
-    console.log(userUpdateId);
-   Item.findByIdAndUpdate(userUpdateId, { 
+    console.log(userUpdateEmail);
+   User.findByIdAndUpdate({_id: userUpdateId}, { 
             name : userUpdateName,
-            username : userUpdateUsername,
             password : userUpdatePassword,
             email : userUpdateEmail,
             phone : userUpdatePhone,
@@ -201,7 +220,7 @@ app.patch('/users/email', (request, response) => {
             console.log(err) 
             } 
     else{ 
-        console.log("here's the old user record:"+docs);
+        console.log("here's the new user record:"+docs);
         response.status(200).send({ status: 'OK'})
     } 
     }); 
