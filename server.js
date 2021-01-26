@@ -116,14 +116,14 @@ app.delete("/goods/:id", function (request, response){
 
     });
 });
-
+ 
 
 //UPDATE QUANTITY
-app.post("/goods/", function (request, response){
-    let updatedQty = new Goods(request.body);
-    Goods.updateOne({_id}, {
-        itemName : updatedQty.itemName,
-        itemQty  : updatedQty.itemQty,   
+app.post("/goods/:id", function (request, response){
+    
+    Goods.findByIdAndUpdate({_id: request.params.id}, {
+        itemName : request.body.itemName,
+        itemQty  : request.body.qty,   
     } ,
     function (err, good){
         if (err){

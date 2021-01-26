@@ -29,7 +29,7 @@ async function getItemList(){
                 console.log("getting the items");
                 let listDiv = document.getElementById("updateQTY");
                let itemHtml = `
-               <div class = "row" id= "changeQty">
+               <div class = "row">
                <div class = "list col-lg-10" data-id="${body[i]._id}" id = "itemName">Item Name: ${body[i].itemName} 
                </div>
            
@@ -40,7 +40,7 @@ async function getItemList(){
            </div>`;
 
         listDiv.innerHTML += itemHtml;
-        console.log("after update html");
+        
             }
         }).catch(function(err){
             console.log(err);
@@ -52,31 +52,30 @@ async function getItemList(){
     })
    // asynch function to update quantities
     async function updateQTY(){
-        let newArr = [];
+        //let newArr = [];
         
 
-        $('#changeQty input').each(function(){
-            // let newQty = document.getElementById("qty").value;
-        //     let itemName = documnet.getElementById("itemName").value;
-        //     let updatedObject = {
-        //            _id : id ,
-        //         itemName : itemName,
-        //         qty : newQty,
-        //     }
+        $('#changeQTY input').each(function(){
+        //     // let newQty = document.getElementById("qty").value;
+        // //     let itemName = documnet.getElementById("itemName").value;
+        // //     let updatedObject = {
+        // //            _id : id ,
+        // //         itemName : itemName,
+        // //         qty : newQty,
+        // //     }
             
-            newArr.push(this.value);
+                newArr.push(this.value);
             console.log(newArr);
-        })
-        let updateQTY = {
-            itemQty : document.getElementById("qty").value,
-        }
+        });
+        let updateQTY = {itemQty: document.getElementById('qty').value}
 
         let changeQtyOptions = {
             method  : "POST",
             body    : JSON.stringify(updateQTY),
             headers : {"Content-Type" : "application/json"}
         }
-        const response = await fetch("/goods/", changeQtyOptions);
+        let _id = document.getElementById("data-id")
+        const response = await fetch("/goods/"+ _id, changeQtyOptions);
         if (response.status != 200){
             throw Error("qty not updated");
         }
