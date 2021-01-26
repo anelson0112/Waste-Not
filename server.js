@@ -119,22 +119,30 @@ app.delete("/goods/:id", function (request, response){
  
 
 //UPDATE QUANTITY
-app.post("/goods/:id", function (request, response){
-    
-    Goods.findByIdAndUpdate({_id: request.params.id}, {
-        itemName : request.body.itemName,
-        itemQty  : request.body.qty,   
+app.post("/goods", function (request, response){
+    console.log(request.body.data);
+    arr = []
+    for(i = 0; request.body.length; i++){
+
+   
+    Goods.findByIdAndUpdate({_id: request.body.data[i]._id}, {
+        itemName : request.body.data[i].itemName,
+        itemQty  : request.body.data[i].qty,   
     } ,
     function (err, good){
         if (err){
             console.error(err);
-            return body;
+            arr.push(err);
+            
         }
         console.log("qty updated");
-        response.status(200);
+        arr.push(good);
         //good.save();
     })
+}
+    response.status(200).send(arr);
 })
+
 
 //SERVER SIDE ADD USER
 

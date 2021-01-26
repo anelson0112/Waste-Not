@@ -35,7 +35,7 @@ async function getItemList(){
            
                <div class = "qty col-lg-2">
                    <label for = "qty">Quantity</label>
-                   <input type = "number" id = "qty" name = "qty" data-id="${body[i]._id}">
+                   <input type = "number" data-name="${body[i].itemName}" name = "qty" data-id="${body[i]._id}" >
                </div>
            </div>`;
 
@@ -52,34 +52,35 @@ async function getItemList(){
     })
    // asynch function to update quantities
     async function updateQTY(){
-        //let newArr = [];
-        
-
-        $('#changeQTY input').each(function(){
-        //     // let newQty = document.getElementById("qty").value;
-        // //     let itemName = documnet.getElementById("itemName").value;
-        // //     let updatedObject = {
-        // //            _id : id ,
-        // //         itemName : itemName,
-        // //         qty : newQty,
-        // //     }
+       
+            newArr = [];
             
-                newArr.push(this.value);
-            console.log(newArr);
+         $('input[name="qty"]').each(function(){
+             
+            let newQTY = {
+                _id  : this.getAttribute("data-id"),
+                itemName : this.getAttribute("data-name"),
+                itemQty: this.value,
+            };
+            newArr.push(newQTY);
+             
+            
+            
         });
-        let updateQTY = {itemQty: document.getElementById('qty').value}
+        console.log(newArr);
 
         let changeQtyOptions = {
             method  : "POST",
-            body    : JSON.stringify(updateQTY),
+            body    : JSON.stringify({data:newArr}),
             headers : {"Content-Type" : "application/json"}
         }
-        let _id = document.getElementById("data-id")
-        const response = await fetch("/goods/"+ _id, changeQtyOptions);
+        
+        const response = await fetch("/goods", changeQtyOptions);
+        const body = await response.json();
         if (response.status != 200){
             throw Error("qty not updated");
         }
-        console.log("QTY Updated");
+        console.log(body);
         return body;
     };
 
