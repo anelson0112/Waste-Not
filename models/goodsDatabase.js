@@ -19,7 +19,10 @@ const goodsSchema = new Schema ({
         default : 0},
     /*price is price, read that you could require USD or decimal, but that is extranious and unneccesary*/
     //itemPrice: {type: Number, required: true},
-        
+    wasteQty: {
+        type : Number,
+        default : 0
+    } 
 });
 
 //export schema
