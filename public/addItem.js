@@ -31,16 +31,27 @@ function showList(){
             console.log("getting the items");
             let listDiv = document.getElementById("seeListAsAdded");
            let itemHtml = `
-        <div class = "goodsList" data-id = "${body[i]._id}">
+        <div class = "goodsList">
             <div class = "row">
                 <div class = "list col-lg-10" data-id="${body[i]._id}">Item Name: ${body[i].itemName} 
                 </div>
+                <div class = "delete col-lg-2" ><i class="far fa-trash-alt" data-id = "${body[i]._id}" ></i>
+                </div> 
             </div>
         </div>`;
 
     listDiv.innerHTML += itemHtml;
     console.log("after update html");
         }
+
+    // let deleteButtons = document.getElementsByClassName("delete");
+    //     forEach(deleteButtons){
+    //         deleteButtons[i].addEventListener("click", function(event){
+    //             deleteItem(event.target.dataset.id);
+    //             console.log(event.target);
+    //         })
+    //     }
+
     }).catch(function(err){
         console.log(err);
     });
@@ -127,4 +138,14 @@ async function addItem(){
      
  };
 
- 
+//  async function deleteItemRequest(id){
+
+//     let reqOptions = {
+//         method : "DELETE",
+//         headers : {
+//             "Content-Type" : "application/json"
+//         }
+
+//         const response
+//     }
+//  }
