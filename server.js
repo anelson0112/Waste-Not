@@ -119,31 +119,39 @@ app.delete("/goods/:id", function (request, response){
  
 
 //UPDATE QUANTITY
-app.post("/goods", function (request, response){
-    console.log(request.body.data);
+app.post("/goods", async function (request, response){
+    //console.log(request.body.data);
     arr = []
-    for(i = 0; request.body.length; i++){
-
-   
-    Goods.findByIdAndUpdate({_id: request.body.data[i]._id}, {
-        itemName : request.body.data[i].itemName,
-        itemQty  : request.body.data[i].qty,   
-    } ,
-    function (err, good){
-        if (err){
-            console.error(err);
-            arr.push(err);
-            
-        }
-        console.log("qty updated");
-        arr.push(good);
-        //good.save();
-    })
-}
+    for(i = 0; i < request.body.data.length; i++){
+        
+        let good = await getUpdateGood(request.body.data[i]);
+            console.log(good);
+            arr.push(good);
+    
+         
+    }
     response.status(200).send(arr);
 })
 
+async function getUpdateGood(data){
+    console.log(data);
+    return Goods.findByIdAndUpdate(data._id, {
+        itemName : data.itemName,
+        itemQty  : data.itemQty,   
 
+    },
+    function (error, good){
+        if (error) {
+            console.error(error);
+
+            return  {error: error};
+        }
+            console.log("qty updated");
+            return good;
+    
+        
+    }); 
+}
 //SERVER SIDE ADD USER
 
 app.post("/users", (request, response) => {
