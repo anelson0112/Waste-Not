@@ -1,3 +1,5 @@
+//const { response } = require("express");
+
 const url = window.location.href;
 const myUrl = new URL(url);
 let g_id = myUrl.searchParams.get('id');
@@ -35,7 +37,7 @@ function showList(){
             <div class = "row">
                 <div class = "list col-lg-10" data-id="${body[i]._id}">Item Name: ${body[i].itemName} 
                 </div>
-                <div class = "delete col-lg-2" ><i class="far fa-trash-alt" data-id = "${body[i]._id}" ></i>
+                <div class = "delete col-lg-2" ><i class="far fa-trash-alt" id = "delete" data-id = "${body[i]._id}" ></i>
                 </div> 
             </div>
         </div>`;
@@ -44,13 +46,13 @@ function showList(){
     console.log("after update html");
         }
 
-    // let deleteButtons = document.getElementsByClassName("delete");
-    //     forEach(deleteButtons){
-    //         deleteButtons[i].addEventListener("click", function(event){
-    //             deleteItem(event.target.dataset.id);
-    //             console.log(event.target);
-    //         })
-    //     }
+    let deleteButtons = document.getElementsByClassName("delete");
+        for (let i = 0; i < deleteButtons.length; i++ ){
+            deleteButtons[i].addEventListener("click", function(event){
+                deleteItem(event.target.dataset.id);
+                console.log(event.target);
+            });
+        }
 
     }).catch(function(err){
         console.log(err);
@@ -88,9 +90,8 @@ async function addItem(){
 
      addItem().then(function(item){
      
-        // let itemName = document.getElementById("addItem").value = body.itemName;
         
-            console.log("after then");
+        console.log("after then");
         let showItemDiv = document.getElementById("seeListAsAdded");
         let showItemHTML = 
             `<div class = "row">
@@ -138,14 +139,31 @@ async function addItem(){
      
  };
 
-//  async function deleteItemRequest(id){
+ async function deleteItemRequest(deleteId){
 
-//     let reqOptions = {
-//         method : "DELETE",
-//         headers : {
-//             "Content-Type" : "application/json"
-//         }
+    let reqOptions = {
+        method : "DELETE",
 
-//         const response
-//     }
-//  }
+        headers : {
+            "Content-Type" : "application/json"
+        }
+    }
+        const response = await fetch('/goods/' + deleteId, reqOptions);
+        console.log(response);
+
+        return false;
+    
+ };
+
+ function deleteItem(id){
+
+    let deleteId = document.getElementById("delete").getAttribute("data-id");
+     confirm("Are you sure you want to delete this item?");
+
+     deleteItemRequest(deleteId).then(function(sucess){
+         alert("Item Deleted");
+        location.reload();
+     }).catch(function(error){
+         console.log(error);
+     });
+ };
