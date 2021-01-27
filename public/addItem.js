@@ -92,13 +92,13 @@ async function addItem(){
      
         
         console.log("after then");
-        let showItemDiv = document.getElementById("seeListAsAdded");
-        let showItemHTML = 
-            `<div class = "row">
-                <div class = "col-lg-12" id = "addItem">Item Name: ${item.itemName}</div>
-            </div> `;
-        showItemDiv.innerHTML += showItemHTML;
-        
+        // let showItemDiv = document.getElementById("seeListAsAdded");
+        // let showItemHTML = 
+        //     `<div class = "row">
+        //         <div class = "col-lg-12" id = "addItem">Item Name: ${item.itemName}</div>
+        //     </div> `;
+        // showItemDiv.innerHTML += showItemHTML;
+        location.reload();
      }).catch(function (err){
          console.error(err);
      });
@@ -139,7 +139,7 @@ async function addItem(){
      
  };
 
- async function deleteItemRequest(deleteId){
+ async function deleteItemRequest(id){
 
     let reqOptions = {
         method : "DELETE",
@@ -148,7 +148,7 @@ async function addItem(){
             "Content-Type" : "application/json"
         }
     }
-        const response = await fetch('/goods/' + deleteId, reqOptions);
+        const response = await fetch('/goods/' + id, reqOptions);
         console.log(response);
 
         return false;
@@ -157,10 +157,11 @@ async function addItem(){
 
  function deleteItem(id){
 
-    let deleteId = document.getElementById("delete").getAttribute("data-id");
+    // let deleteId = document.getElementById("delete").getAttribute("data-id");
      confirm("Are you sure you want to delete this item?");
 
-     deleteItemRequest(deleteId).then(function(sucess){
+     deleteItemRequest(id).then(function(success){
+        console.log(success);
          alert("Item Deleted");
         location.reload();
      }).catch(function(error){
