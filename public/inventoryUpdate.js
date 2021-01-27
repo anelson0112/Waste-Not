@@ -52,7 +52,7 @@ async function getItemList(){
     })
    // asynch function to update quantities
     async function updateQTY(){
-       
+            newObj = {};
             newArr = [];
             
          $('input[name="qty"]').each(function(){
@@ -62,6 +62,7 @@ async function getItemList(){
                 itemName : this.getAttribute("data-name"),
                 itemQty: this.value,
             };
+            
             newArr.push(newQTY);
              
             
@@ -80,14 +81,23 @@ async function getItemList(){
         if (response.status != 200){
             throw Error("qty not updated");
         }
+        
         console.log(body);
         return body;
+        
     };
 
     //function to update the quanity of items using the form submit
     document.getElementById("updateQTY").addEventListener('submit', function (event){
         event.preventDefault();
         updateQTY();
+        returnToWorkDay();
         console.log("after update qty");
-    })
+    });
+
+    function returnToWorkDay(){
+        location.href = "index.html";
+        displayWorkDayMenu();
+
+    }
 
