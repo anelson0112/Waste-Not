@@ -71,18 +71,39 @@ app.get("/goods", function (request, response){
         
     });
 });
+//UPDATE SINGLE ITEM WASTE QTY
+app.put("/good/:id", function (request, response){
+    let wasteUpdate = {
+        
+        wasteQty : request.body.wasteQty,
+    }
+    console.log(request.body.data);
+
+    Goods.findByIdAndUpdate({_id: request.params.id}, wasteUpdate,
+        function (error, good){
+            if (error){
+                response.sendStatus(500);
+                return console.error(error);
+            }
+            console.log(good);
+            response.sendStatus(200);
+
+            console.log("qty updated");
+            return good;
+        });
+})
 //GET SINGLE ITEM
 
 app.get("/good/:id", function (request, response){
 
 
-    Goods.findOne({_id},function (err, good){
+    Goods.findOne({_id: request.params.id},function (err, good){
 
         if (err){
         console.error(err);
         return;
         }
-        console.log(good + "found one");
+        console.log(good);
         response.status(200).send(good);
     });
 });
@@ -152,6 +173,7 @@ async function getUpdateGood(data){
         
     }); 
 }
+
 //SERVER SIDE ADD USER
 
 app.post("/users", (request, response) => {

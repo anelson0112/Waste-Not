@@ -67,7 +67,7 @@ button btn btn-primary{
     margin-top: 6px;
 } */
 input{
-    width: 100%;
+    width: auto;
     padding: 12px;
     border: 1px solid;
     border-radius: 4px;
@@ -118,6 +118,8 @@ input{
 
 }
 
+
+  
 /*
 colors from pallet
 The Red:#AD102F
@@ -125,3 +127,67 @@ background? lightes color #BFA5A4
 darger purply color #897170
 darker green #416000
 lighter green #769307 */
+
+
+/* //////////PLUS MINUS BUTTON GROUP STYLING?????????
+input,
+textarea {
+  border: 1px solid #eeeeee;
+  box-sizing: border-box;
+  margin: 0;
+  outline: none;
+  padding: 10px;
+}
+
+input[type="button"] {
+  -webkit-appearance: button;
+  cursor: pointer;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.input-group {
+  clear: both;
+  margin: 15px 0;
+  position: relative;
+}
+
+.input-group input[type='button'] {
+  background-color: #eeeeee;
+  min-width: 38px;
+  width: auto;
+  transition: all 300ms ease;
+}
+
+.input-group .button-minus,
+.input-group .button-plus {
+  font-weight: bold;
+  height: 38px;
+  padding: 0;
+  width: 38px;
+  position: relative;
+}
+
+.input-group .quantity-field {
+  position: relative;
+  height: 38px;
+  left: -6px;
+  text-align: center;
+  width: 62px;
+  display: inline-block;
+  font-size: 13px;
+  margin: 0 0 5px;
+  resize: vertical;
+}
+
+.button-plus {
+  left: -13px;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+  -webkit-appearance: none;
+} */
