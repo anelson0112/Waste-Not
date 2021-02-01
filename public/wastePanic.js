@@ -27,7 +27,7 @@ async function getItemList(){
                 let dropWaste = document.getElementById("wasteDrop");
                 //let wasteOptions = document.createElement('option');
                 
-                dropWaste.innerHTML += `<option data-id="${body[i]._id}">${body[i].itemName}</option>`
+                dropWaste.innerHTML += `<option value = "${body[i]._id}" data-name = "${body[i].itemName}" data-id="${body[i]._id}">${body[i].itemName}</option>`
         
             }
         }).catch(function(err){
@@ -62,7 +62,7 @@ async function getItemList(){
                 let dropPanic = document.getElementById("panicDrop");
                 //let wasteOptions = document.createElement('option');
                 
-                dropPanic.innerHTML += `<option value = "${body[i]._id}" data-id="${body[i]._id}">${body[i].itemName}</option>`
+                dropPanic.innerHTML += `<option value = "${body[i]._id}" data-name = "${body[i].itemName}" data-id="${body[i]._id}">${body[i].itemName}</option>`
         
             }
         }).catch(function(err){
@@ -124,34 +124,37 @@ document.getElementById("plus").addEventListener('click', function (event){
     });
 
     //async function to update waste quantity
-    async function updateWaste(id){
+    async function updateWaste(){
+        let drop = document.getElementById("wasteDrop");
+        let _id = drop.options[drop.selectedIndex].value;
         let wasteUpdate = {
-            wasteQty : document.getElementById("wasteInput").nodeValue,
+            _id : _id,
+            wasteQty : this.document.getElementById("wasteInput").value,
         }
-
+        console.log(wasteUpdate);
         let requestOptions = {
-            methiod : "PUT",
+            method : "PATCH",
             body: JSON.stringify(wasteUpdate),
             headers : { "Content-Type": "application/json" },
         }
 
-        const response = await fetch("/good/" + id, requestOptions);
+        const response = await fetch("/good/" + _id, requestOptions);
         const body = await response.json();
 
         if (response.status != 200){
             throw Error ("not updated");
         }
         console.log ("waste updated");
-        return;
+        return body;
     };
 
     //function to update waste
-    function wasteItem(id){
+    function wasteItem(){
         console.log("got value?");
-        updateWaste(id).then(function(success){
+        updateWaste().then(function(success){
             console.log(success);
-            alert("Waste Added");
-            location.reload();
+            // alert("Waste Added");
+            // location.reload();
 
         }).catch(function(error){
             console.log(error);
@@ -160,5 +163,44 @@ document.getElementById("plus").addEventListener('click', function (event){
 //event listener to call function
 document.getElementById("submitWaste").addEventListener("click", function (event){
     event.preventDefault();
+    selectedItem();
     wasteItem();
+    alert("Waste Quantity Recorded");
+    location.reload();
 })
+//async function to get single item
+async function getSingleItem(){
+    let drop = document.getElementById("wasteDrop");
+    let _id = drop.options[drop.selectedIndex].value;
+    let requestOptions = {
+        method : 'GET',
+        headers : {"Content-Type" : "application/json"},
+    }
+    console.log("get single item");
+const response = await fetch('/good/'+ _id, requestOptions);
+const body = await response.json();
+
+if (response.status != 200){
+    throw Error(body.message);
+
+}
+    return body;
+};
+
+function selectedItem(){
+    getSingleItem().then(function(good){
+        let drop = document.getElementById("wasteDrop");
+        let _id = drop.options[drop.selectedIndex].value;
+        
+        console.log(_id);
+    }).catch(function(error){
+        console.log(error);
+    });
+};
+
+// let select = document.getElementById("wasteDrop");
+
+// select.addEventListener('click', function (event){
+//     event.preventDefault();
+//     selectedItem();
+// })

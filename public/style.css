@@ -3,8 +3,8 @@
 font-family: 'Open Sans', sans-serif; */
 body{
     font-family: 'Open Sans', sans-serif;
-    background-color: #769307;
-    color: #2F4858;
+    background-color: gray;
+    color: white;
     
 }
 #header {
@@ -49,7 +49,7 @@ button btn btn-primary{
 }
 .container{
     border-radius: 5px;
-    background-color:#BFA5A4;
+    background-color:black;
     padding: 20px;
     margin:  auto;
     position: relative;
