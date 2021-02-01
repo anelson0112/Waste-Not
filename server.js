@@ -72,14 +72,14 @@ app.get("/goods", function (request, response){
     });
 });
 //UPDATE SINGLE ITEM WASTE QTY
-app.put("/good/:id", function (request, response){
+app.patch("/good/:id", function (request, response){
     let wasteUpdate = {
         
         wasteQty : request.body.wasteQty,
     }
     console.log(request.body.data);
 
-    Goods.findByIdAndUpdate({_id: request.params.id}, wasteUpdate,
+    Goods.findByIdAndUpdate({_id: request.params.id}, {$inc:wasteUpdate},
         function (error, good){
             if (error){
                 response.sendStatus(500);
@@ -96,8 +96,8 @@ app.put("/good/:id", function (request, response){
 
 app.get("/good/:id", function (request, response){
 
-
-    Goods.findOne({_id: request.params.id},function (err, good){
+    
+    Goods.findById({_id: request.params.id},function (err, good){
 
         if (err){
         console.error(err);

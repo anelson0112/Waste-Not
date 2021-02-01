@@ -52,7 +52,7 @@ async function getItemList(){
     })
    // asynch function to update quantities
     async function updateQTY(){
-            newObj = {};
+            
             newArr = [];
             
          $('input[name="qty"]').each(function(){
