@@ -16,12 +16,14 @@
         <h5>To edit/delete a User, please input their email address and press Find</h5>
         <br>
         <div class='mx-auto'>
-        <button onclick='clickGetUser()' class='btn btn-primary' id='findUser'>Find User</button>
-        <button class='btn btn-primary' id='updateUser'>Update User</button>
-        <button class= 'btn btn-primary btn-danger' id='deleteUser'>Delete User</button>
-        <button onclick='clickAddUserByAdmin()' class='btn btn-primary' id='addUser'>Add New User</button>
+
+        <button onclick='clickGetUser()' class='btn-info' id='findUser'>Find</button>
+        <button onclick='clickUpdateUser()' class='btn-primary' id='updateUser'>Update</button>
+        <button onclick='clickDeleteUser()' class='btn-danger' id='deleteUser'>Delete</button>
+        <button onclick='clickAddUserByAdmin()' class='btn-success'id='addUser'>Add</button>
+
         </div>  
-        <div id = "editUserSection" class='mx-auto'>
+        <div id = "editUserSection" class='mx-auto' data-id="">
             <input type="text" class="text-input-format form-control" placeholder="Name" name ="editName" id="editName"> 
             <br>  
             <div><br></div>
