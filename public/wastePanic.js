@@ -15,7 +15,7 @@ async function getItemList(){
         }
         return body;
     };
-
+////////////WASTE SECTION////////////
     //function do add items to drop down list for waste
     function wasteList(){
         getItemList().then(function(body){
@@ -52,39 +52,7 @@ async function getItemList(){
     });
 
 
-    function panicList(){
-        getItemList().then(function(body){
-
-            for (let i = 0; i < body.length; i++){
-                console.log(body[i].itemName);
-                console.log(body[i]._id)
-                console.log("getting the items");
-                let dropPanic = document.getElementById("panicDrop");
-                //let wasteOptions = document.createElement('option');
-                
-                dropPanic.innerHTML += `<option value = "${body[i]._id}" data-name = "${body[i].itemName}" data-id="${body[i]._id}">${body[i].itemName}</option>`
-        
-            }
-        }).catch(function(err){
-            console.log(err);
-        });
-    };
-    //function to display panic notify drop and button
-    function displayPanicSection (){
-        document.getElementById("panicSection").style.display = "block";
-    }
-
-    //function to hide waste button when panic is clicked
-    function hideWaste(){
-        document.getElementById("wasteButton").style.display = "none";
-    }
-
-    //function to add drop down when panic is clicked
-    document.getElementById("panicButton").addEventListener('click', function (event){
-        hideWaste();
-        displayPanicSection();
-        panicList();
-    });
+    
 //function to increment with plus button
     function incrementWaste(){
         document.getElementById("wasteInput").stepUp();
@@ -108,7 +76,7 @@ document.getElementById("plus").addEventListener('click', function (event){
         decrementWaste();
        
     });
-
+//goes back to base page when cancel is pushed, works for panic or waste cancel buttons
     function cancel(){
         location.reload();
     }
@@ -153,9 +121,7 @@ document.getElementById("plus").addEventListener('click', function (event){
         console.log("got value?");
         updateWaste().then(function(success){
             console.log(success);
-            // alert("Waste Added");
-            // location.reload();
-
+            
         }).catch(function(error){
             console.log(error);
         });
@@ -163,13 +129,13 @@ document.getElementById("plus").addEventListener('click', function (event){
 //event listener to call function
 document.getElementById("submitWaste").addEventListener("click", function (event){
     event.preventDefault();
-    selectedItem();
+    selectedWasteItem();
     wasteItem();
     alert("Waste Quantity Recorded");
     location.reload();
 })
 //async function to get single item
-async function getSingleItem(){
+async function getSingleWasteItem(){
     let drop = document.getElementById("wasteDrop");
     let _id = drop.options[drop.selectedIndex].value;
     let requestOptions = {
@@ -187,8 +153,8 @@ if (response.status != 200){
     return body;
 };
 
-function selectedItem(){
-    getSingleItem().then(function(good){
+function selectedWasteItem(){
+    getSingleWasteItem().then(function(good){
         let drop = document.getElementById("wasteDrop");
         let _id = drop.options[drop.selectedIndex].value;
         
@@ -204,3 +170,91 @@ function selectedItem(){
 //     event.preventDefault();
 //     selectedItem();
 // })
+//////////PANIC SECTION///////////
+//function to fill in panic list drop down
+function panicList(){
+    getItemList().then(function(body){
+
+        for (let i = 0; i < body.length; i++){
+            console.log(body[i].itemName);
+            console.log(body[i]._id)
+            console.log("getting the items");
+            let dropPanic = document.getElementById("panicDrop");
+            
+            
+            dropPanic.innerHTML += `<option value = "${body[i].itemName}" data-name = "${body[i].itemName}" data-id="${body[i]._id}">${body[i].itemName}</option>`
+    
+        }
+    }).catch(function(err){
+        console.log(err);
+    });
+};
+//function to display panic notify drop and button
+function displayPanicSection (){
+    document.getElementById("panicSection").style.display = "block";
+}
+
+//function to hide waste button when panic is clicked
+function hideWaste(){
+    document.getElementById("wasteButton").style.display = "none";
+}
+
+//function to add drop down when panic is clicked
+document.getElementById("panicButton").addEventListener('click', function (event){
+    hideWaste();
+    displayPanicSection();
+    panicList();
+});
+
+//async function to get select panic item
+async function getSinglePanicItem(){
+    let drop = document.getElementById("panicDrop");
+    let _id = drop.options[drop.selectedIndex].getAttribute("data-id");
+    let itemName = drop.options[drop.selectedIndex].value;
+    let requestOptions = {
+        method : 'GET',
+        headers : {"Content-Type" : "application/json"},
+    }
+    console.log("get single item");
+const response = await fetch('/good/'+ _id, requestOptions);
+const body = await response.json();
+
+if (response.status != 200){
+    throw Error(body.message);
+
+}
+    return body;
+};
+
+
+//function to select item from panic drop down menu
+function selectedPanicItem(){
+    getSinglePanicItem().then(function(good){
+        let drop = document.getElementById("panicDrop");
+        let _id = drop.options[drop.selectedIndex].value;
+        let itemName = drop.options[drop.selectedIndex].value;
+        
+        console.log(_id);
+        console.log(itemName);
+        
+    }).catch(function(error){
+        console.log(error);
+    });
+};
+// let select = document.getElementById("wasteDrop");
+
+// select.addEventListener('click', function (event){
+//     event.preventDefault();
+//     selectedItem();
+// })
+let selectPanic = document.getElementById("panicDrop");
+
+selectPanic.addEventListener('change', function (event){
+    let selected = document.getElementById("selected");
+    
+    selected.innerHTML += `<input id = "itemName" type="text" value = "${event.target.value}">`
+    //selected.innerHTML += `<p>${event.target.value}</p>`;
+    event.preventDefault();
+    selectedPanicItem();
+})
+
