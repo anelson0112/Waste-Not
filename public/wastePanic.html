@@ -49,10 +49,14 @@
         </div>
     <!-- panic section -->
         <div class="container" id = "panicSection" style="display: none;">
+            <form id="panicNotify" action="/sendemail" method = "POST">
             <div class="row" >
                  <div class = "col-lg-12">
-                    <select id = "panicDrop"></select>
+                    <select id = "panicDrop" >
+                        <option class="placeholder">Select Item</option>
+                    </select>
                     <button id="panicSubmit" type="submit">Notify</button>
+                    <div id="selected"></div>
                 </div>
             </div>
             <div class="row">
@@ -60,6 +64,7 @@
                     <button id = "cancelP" type="submit">Cancel</button>
                 </div>
             </div>
+        </form>
         </div>
         <div class="container">   
             <div class="row">
@@ -71,7 +76,7 @@
         </div> 
             <div class = "row">
                 <div class = "col-lg-12">
-                <a class = " button btn btn-default" href="workDayMenu.html" role="button"> Back to Work Day Menu</a>
+                <a class = 'btn btn-primary' href="workDayMenu.html" role="button">Work Day Menu</a>
                 </div>
             </div> 
          
@@ -79,6 +84,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src ="wastePanic.js"></script>
+    
     
     </body>
 </html>
