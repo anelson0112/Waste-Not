@@ -20,7 +20,7 @@
         <!-- waste section -->
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col">
                     <button class = "wasteButton" id = "wasteButton" type="submit">Waste</button>
                 </div>
             </div> 
@@ -28,10 +28,10 @@
         <div class="container" id = "wasteSection"  style="display: none">
             <form>
             <div class="row">
-                <div class = "col-lg-6">
+                <div class = "col">
                     <select id = "wasteDrop"></select>
                 </div>
-                <div class = "col-lg-4 input-group">
+                <div class = "col input-group">
                   
                     <button id = "minus" type = "submit">-</button>
                     <input id= "wasteInput" class = "quantity-field" type="number" min=1 >
@@ -41,7 +41,7 @@
                 </div>        
             </div>
             <div class="row">
-                <div class = "col-lg-12">
+                <div class = "col">
                     <button id = "cancel" type="submit">Cancel</button>
                 </div>
             </div>
@@ -51,7 +51,7 @@
         <div class="container" id = "panicSection" style="display: none;">
             <form>
             <div class="row" >
-                 <div class = "col-lg-12">
+                 <div class = "col">
                     <select id = "panicDrop" name = "itemName">
                         <option class="placeholder">Select Item</option>
                     </select>
@@ -60,7 +60,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class = "col-lg-12">
+                <div class = "col">
                     <button id = "cancelP" type="submit">Cancel</button>
                 </div>
             </div>
@@ -68,17 +68,19 @@
         </div>
         <div class="container">   
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col">
                     <button id = "panicButton" type="submit">Panic</button>
                  </div>
             </div>
             
         </div> 
-            <div class = "row">
-                <div class = "col-lg-12">
-                <a class = 'btn btn-primary' href="workDayMenu.html" role="button">Work Day Menu</a>
+        <div id = "backButton" class="container h=100">
+            <div class="row">
+                <div class="col">
+                        <a class = 'button btn btn-primary' href="workDayMenu.html">Work Day Menu</a>
                 </div>
-            </div> 
+            </div>
+        </div> 
          
             <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
