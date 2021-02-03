@@ -140,7 +140,7 @@ async function getSingleWasteItem(){
     let _id = drop.options[drop.selectedIndex].value;
     let requestOptions = {
         method : 'GET',
-        headers : {"Content-Type" : "application/json"},
+        
     }
     console.log("get single item");
 const response = await fetch('/good/'+ _id, requestOptions);
@@ -252,9 +252,48 @@ let selectPanic = document.getElementById("panicDrop");
 selectPanic.addEventListener('change', function (event){
     let selected = document.getElementById("selected");
     
-    selected.innerHTML += `<input id = "itemName" type="text" value = "${event.target.value}">`
+    selected.innerHTML += `<input id = "itemName" type="text" value = "${event.target.value}" style = "display: none">`
     //selected.innerHTML += `<p>${event.target.value}</p>`;
     event.preventDefault();
     selectedPanicItem();
 })
 
+async function sendEmail(){
+
+    
+    
+    let panicItem  = { 
+      itemName : this.document.getElementById("itemName").value,
+    }
+    
+    console.log(panicItem);
+    let requestOptions = {
+        method : "POST",
+        body : JSON.stringify(panicItem),
+        headers : {"Content-Type" : "application/json"},
+    }
+
+    const response = await fetch('/sendemail', requestOptions);
+    const body = await response.json();
+
+    if (response.status != 200){
+        throw Error(body.message);
+    }
+    return body;
+};
+
+function notify(){
+    sendEmail().then(function(good){
+        let itemName = document.getElementById("itemName").value;
+        console.log(itemName);
+    }).catch(function(error){
+        console.log(error)
+    });
+};
+
+document.getElementById("panicSubmit").addEventListener('click', function(event){
+    event.preventDefault();
+    notify();
+    alert("Admin Notified");
+    location.reload();
+})

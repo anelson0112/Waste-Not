@@ -34,7 +34,7 @@
                 <div class = "col-lg-4 input-group">
                   
                     <button id = "minus" type = "submit">-</button>
-                    <input id= "wasteInput" type="number" min=1 >
+                    <input id= "wasteInput" class = "quantity-field" type="number" min=1 >
                     <button id = "plus" type = "submit">+</button>
                     <button id = "submitWaste" type = "submit">Submit Waste</button>
                   
@@ -49,10 +49,11 @@
         </div>
     <!-- panic section -->
         <div class="container" id = "panicSection" style="display: none;">
-            <form id="panicNotify" action="/sendemail" method = "POST">
+            <form>
+            <!-- <form id="panicNotify" action="/sendemail" method = "POST"> -->
             <div class="row" >
                  <div class = "col-lg-12">
-                    <select id = "panicDrop" >
+                    <select id = "panicDrop" name = "itemName">
                         <option class="placeholder">Select Item</option>
                     </select>
                     <button id="panicSubmit" type="submit">Notify</button>

@@ -50,12 +50,13 @@ body{
     border-radius: 5px;
     background-color:#080808;
     padding: 20px;
-    margin-left: auto;
+    /* margin-left: auto;
     margin-right: auto;
     margin-top: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 10px; */
     position: center;
     width: 60%;
+    margin: 0 auto;
     
     
     
@@ -130,14 +131,15 @@ input[type="text"]{
 
 
 /* //////////PLUS MINUS BUTTON GROUP STYLING????????? */
-/* input,
+input,
 textarea {
   border: 1px solid #eeeeee;
   box-sizing: border-box;
   margin: 0;
   outline: none;
   padding: 10px;
-} */
+ 
+} 
 
 input[type="button"] {
   -webkit-appearance: button;
@@ -179,7 +181,7 @@ input::-webkit-inner-spin-button {
   width: 62px;
   display: inline-block;
   font-size: 13px;
-  margin: 0 0 5px;
+  margin: 0 0 5px 5px;
   resize: vertical;
 }
 
@@ -213,6 +215,7 @@ a.btn {
   margin: 10px;
   width:200px;
   text-align: center;
+  border-radius: 1%;
 }
 a.btn:hover{
   background-color: burlywood;
