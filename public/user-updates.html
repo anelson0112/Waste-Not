@@ -11,19 +11,28 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <div class='container'> <h3>User Add, Delete & Update</h3></div>
+      <div id = "header" class = "row">
+        <div class = "col">
+            <h1>Waste Not</h1>
+        </div>
+      </div>  
+      <div class='container'> <h3>User Add, Delete & Update</h3>
+        
         <br>
         <h5>To edit/delete a User, please input their email address and press Find</h5>
         <br>
-        <div class='mx-auto'>
+        
+      </div> 
+      
+        <div id = "editUserSection" class='container mx-auto' data-id="">
+          <div class='mx-auto'>
 
-        <button onclick='clickGetUser()' class='btn-info' id='findUser'>Find</button>
-        <button onclick='clickUpdateUser()' class='btn-primary' id='updateUser'>Update</button>
-        <button onclick='clickDeleteUser()' class='btn-danger' id='deleteUser'>Delete</button>
-        <button onclick='clickAddUserByAdmin()' class='btn-success'id='addUser'>Add</button>
-
-        </div>  
-        <div id = "editUserSection" class='mx-auto' data-id="">
+            <button onclick='clickGetUser()' class='btn-info' id='findUser'>Find</button>
+            <button onclick='clickUpdateUser()' class='btn-primary' id='updateUser'>Update</button>
+            <button onclick='clickDeleteUser()' class='btn-danger' id='deleteUser'>Delete</button>
+            <button onclick='clickAddUserByAdmin()' class='btn-success' id='addUser'>Add</button>
+    
+            </div> 
             <input type="text" class="text-input-format form-control" placeholder="Name" name ="editName" id="editName"> 
             <br>  
             <div><br></div>
