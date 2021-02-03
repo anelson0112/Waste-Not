@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang = "en">
     <head>
-    <title>Work Day Menu</title>
+    <title>Locations</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -17,27 +17,42 @@
                 <h1>Waste Not</h1>
             </div>
         </div>
-        <!-- WORK DAY SECTION -->
-        <div id = "workDayMenu" class = "container h-100" >
-            <div class = "row">
-                <div class = "col-lg-6">
-                    <a class = 'btn btn-primary' href = "inventoryUpdate.html" role = "button" >Update Inventory</a>
+        <div id= "locationContainer" class="container h-100">
+            <div class="row">
+                <div class="col-lg-8">
+                    <h2>Add Location</h2>
                 </div>
-               
-                <div class="col-lg-6">
-                    <a class = 'btn btn-primary' href = "wastePanic.html" role = "button" >Go To Work</a>
+            </div>    
+            <div class="row"> 
+                <div class="col=lg=8">   
+                    <label for = "storeName">Store Name</label>
+                </div>
+                <div class="col-lg-4">
+                    <input type="text" id="storeName" autocomplete="off" onfocus = "this.value = ''"  placeholder="Store Name" required>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <a class = 'btn btn-primary' href="index.html" role="button"> Main Menu</a>
+            <div class = "row"> 
+                <div class = "col-lg-12"  >        
+                    <button id = "addStore" type = "submit" >Submit</button>
+                   
                 </div>
             </div>
         </div>
+        <div id = "locationList" class = "container h-100">
+                <h2>Locations:</h2>
+            
+            <div class = "row">
+                <div class="col-lg-12">
+                    <a class = ' button btn btn-primary' href="adminMenu.html" role="button"> Back to Admin</a>
+                </div>
+            </div>
+
+        </div>
+        
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script src ="workDayMenu.js"></script>
+    <script src ="location.js"></script>
     
     </body>
 </html>
