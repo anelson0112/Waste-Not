@@ -134,7 +134,7 @@ async function addItem(){
      return body;
      
  };
-
+//async delete function
  async function deleteItemRequest(id){
 
     let reqOptions = {
@@ -150,7 +150,7 @@ async function addItem(){
         return false;
     
  };
-
+//function to delete
  function deleteItem(id){
 
     // let deleteId = document.getElementById("delete").getAttribute("data-id");

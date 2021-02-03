@@ -42,7 +42,7 @@ function showLocations(){
         let deleteButtons = document.getElementsByClassName("delete");
         for (let i = 0; i < deleteButtons.length; i++ ){
             deleteButtons[i].addEventListener("click", function(event){
-                deleteItem(event.target.dataset.id);
+                deleteLocation(event.target.dataset.id);
                 console.log(event.target);
             });
         }
@@ -93,5 +93,32 @@ document.getElementById("addStore").addEventListener('click', function (event){
     event.preventDefault();
     console.log("clicked");
     addAndList();
-})
+});
 
+//async delete function
+async function deleteLocationRequest(id){
+
+    let requestOptions = {
+        method : "DELETE",
+        headers : {
+            "Content-Type" : "application/json"
+        }
+    }
+
+    const response = await fetch ('/location/' + id, requestOptions);
+    console.log(response);
+    return false;
+}
+
+//function to delete 
+ function deleteLocation(id){
+     confirm("Are you sure you want to delete this location?");
+     deleteLocationRequest(id).then(function (success){
+         console.log(success);
+         alert("Location deleted");
+         window.location.reload();
+
+     }).catch(function(error){
+         console.log(error);
+     });
+ };
