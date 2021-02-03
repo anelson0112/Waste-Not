@@ -85,6 +85,7 @@ async function addItem(){
     return item;
 };
  
+//function to add new items and show the list
  function listAsAdded(){
      
 
@@ -92,19 +93,14 @@ async function addItem(){
      
         
         console.log("after then");
-        // let showItemDiv = document.getElementById("seeListAsAdded");
-        // let showItemHTML = 
-        //     `<div class = "row">
-        //         <div class = "col-lg-12" id = "addItem">Item Name: ${item.itemName}</div>
-        //     </div> `;
-        // showItemDiv.innerHTML += showItemHTML;
+        
         location.reload();
      }).catch(function (err){
          console.error(err);
      });
  }
 
-//event listner to start function
+//event listener to start function
  let addItemButton = document.getElementById("addItemButton");
     if (addItemButton)
     addItemButton.addEventListener("click", function (event) {

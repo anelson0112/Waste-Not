@@ -25,42 +25,42 @@ body{
 
 
 
-#login {
+/* #login {
 
     width: 50%;
     text-align: left;
     padding: 20px;
 
 
-}
-#admin{
+} */
+/* #admin{
     margin: 20px;
     padding: 20px;
     text-align: center;
 
-}
+} */
 
-#workDayMenu{
+/* #workDayMenu{
     margin: 20px;
     padding: 20px;
     text-align: center;
-}
+} */
 
-.container{
+/* .container{
     border-radius: 5px;
     background-color:#080808;
     padding: 20px;
-    /* margin-left: auto;
+    margin-left: auto;
     margin-right: auto;
     margin-top: 10px;
-    margin-bottom: 10px; */
+    margin-bottom: 10px;
     position: center;
     width: 60%;
-    margin: 0 auto;
+    margin: 0 auto;  
     
     
     
-}
+} */
 /* .col-md-4{
     float: left;
     width: 25%;

@@ -276,32 +276,52 @@ app.patch('/users/:_id', (request, response) => {
     } 
     }); 
 });
-   //SERVER SIDE ADD LOCATION
+  
+//ADD NEW LOCATION
 
-app.post("/location", (request, response) => {
+app.post("/location", function (request, response){
     console.log(request.body);
-    let location = new Location(request.body);
-    user.save((err, item) => {
+
+    let location = new Location (request.body);
+    location.save (function (err, location){
         if (err){
             response.sendStatus(500);
             return console.error(err);
         }
-        response.sendStatus(200);
-    })
+        
+        response.send(location);
+    });
 });
+
 
 //SERVER SIDE DELETE LOCATION
 
-app.delete('/location', async (request, response) => {
-    try {
-        await Location.deleteOne({storeName: request.params.storeName});
-        response.sendStatus(204);
-    } catch {
-        response.sendStatus(404);
-        console.log('Did not find the location!');
-    }
-});
 
+app.delete("/location/:id", function (request, response){
+
+    Location.deleteOne({_id: request.params.id}, function (err){
+        
+        if (err){
+            console.error(err);
+            return
+        } 
+        console.log("deleted");
+        response.sendStatus(204);
+
+    });
+});
+//GET FULL LIST OF LOCATIONS
+
+app.get("/locations", function (request, response){
+
+    Location.find (function(err, locations){
+        if (err)
+            return console.error(err);
+            response.send(locations);
+            
+        
+    });
+});
 //SEND EMAIL
 // route which captures form details and sends it to your personal mail
 app.post('/sendemail',(req,res)=>{
