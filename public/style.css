@@ -21,6 +21,20 @@ body{
     margin-bottom: 50px;
     margin-top: 20px;
 }
+.container {
+  background-color:#080808;
+  padding: 20px;
+  margin : 0 auto; 
+  width: 50%;
+}
+
+.col {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
 
 
 
@@ -46,31 +60,8 @@ body{
     text-align: center;
 } */
 
-/* .container{
-    border-radius: 5px;
-    background-color:#080808;
-    padding: 20px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    position: center;
-    width: 60%;
-    margin: 0 auto;  
-    
-    
-    
-} */
-/* .col-md-4{
-    float: left;
-    width: 25%;
-    margin-top: 6px;
-}
-.col-md-8{
-    float: left;
-    width: 25%;
-    margin-top: 6px;
-} */
+
+
 input[type="text"]{
     width: auto;
     padding: 12px;
