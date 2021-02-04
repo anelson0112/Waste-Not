@@ -35,7 +35,7 @@ function showList(){
            let itemHtml = `
         <div class = "goodsList">
             <div class = "row">
-                <div class = "list col-lg-10" data-id="${body[i]._id}">Item Name: ${body[i].itemName} 
+                <div class = "list col-lg-10" data-id="${body[i]._id}">${body[i].itemName} 
                 </div>
                 <div class = "delete col-lg-2" ><i class="far fa-trash-alt" id = "delete" data-id = "${body[i]._id}" ></i>
                 </div> 

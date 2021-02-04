@@ -3,7 +3,7 @@ font-family: 'Playfair Display', serif; */
 
 body{
     font-family: 'Montserrat', sans-serif;
-    background-color: #303030;
+    background-color: #36454f;
     color: white;
     
 }
@@ -25,18 +25,54 @@ body{
   background-color:#080808;
   padding: 20px;
   margin : 0 auto; 
-  width: 50%;
+  width: auto;
 }
 
 .col {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 5px;
+
+}
+#card{
+  justify-content: center;
+}
+a.btn {
+
+  color: black;
+  text-decoration: none;
+  background-color: #C3B091;
+  box-shadow: 0 5px  0#7E805D;
+  padding: 1em 1.5em;
+  position: relative;
+  text-decoration: none;
+  text-transform: uppercase;
+  outline: black;
+  margin: 10px;
+  width:200px;
+  text-align: center;
+  border-radius: 1%;
+  -webkit-text-stroke-width: .25px;
+  -webkit-text-stroke-color: black;
+}
+a.btn:hover{
+  background-color: burlywood;
+  color: #080808;
+}
+
+input[type = "number"]{
+  width: auto;
+  padding: 5px;
+  border: 1px solid;
+  margin: 12px;
 
 }
 
-
-
+#backButton{
+  background-color: #212b31;
+  margin-top: 5px;
+}
 
 
 /* #login {
@@ -62,11 +98,11 @@ body{
 
 
 
-input[type="text"]{
-    width: auto;
+input[type="text"] input[type = "email"]
+input[type = "password"]{
+    width: 100%;
     padding: 12px;
     border: 1px solid;
-    border-radius: 4px;
     margin: 5px;
 }
 @media screen and (max-width: 600px) {
@@ -76,7 +112,7 @@ input[type="text"]{
     }
 }
 #wasteButton{
-    background-color: #416000;
+    background-color: #065823;
     border: 1px solid black;
     color: white;
     text-align: center;
@@ -96,7 +132,7 @@ input[type="text"]{
 
 }
 #panicButton{
-    background-color: #AD102F;
+    background-color: #B50717;
     border: 1px solid black;
     color: white;
     text-align: center;
@@ -116,13 +152,16 @@ input[type="text"]{
 
 }
 
+button[type = "submit"]{
 
+  margin: 5px;;
+}
   
 
 
 
 /* //////////PLUS MINUS BUTTON GROUP STYLING????????? */
-input,
+/* input,
 textarea {
   border: 1px solid #eeeeee;
   box-sizing: border-box;
@@ -190,26 +229,9 @@ input[type="number"]{
   margin: 0;
   outline: none;
   padding: 10px;
-}
+} */
 
 
-a.btn {
 
-  color: white;
-  text-decoration: none;
-  background-color: #C3B091;
-  box-shadow: 0 5px 0 #7E805D;
-  padding: 1em 1.5em;
-  position: relative;
-  text-decoration: none;
-  text-transform: uppercase;
-  margin: 10px;
-  width:200px;
-  text-align: center;
-  border-radius: 1%;
-}
-a.btn:hover{
-  background-color: burlywood;
-}
 
 

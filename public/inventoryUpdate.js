@@ -30,11 +30,11 @@ async function getItemList(){
                 let listDiv = document.getElementById("updateQTY");
                let itemHtml = `
                <div class = "row">
-               <div class = "list col-lg-10" data-id="${body[i]._id}" id = "itemName">Item Name: ${body[i].itemName} 
+               <div class = "list col" data-id="${body[i]._id}" id = "itemName">${body[i].itemName} 
                </div>
            
-               <div class = "qty col-lg-2">
-                   <label for = "qty">Quantity</label>
+               <div class = "qty col">
+                   <label for = "qty">Quantity</label><br>
                    <input type = "number" data-name="${body[i].itemName}" name = "qty" data-id="${body[i]._id}" >
                </div>
            </div>`;
