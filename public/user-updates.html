@@ -16,46 +16,60 @@
         <div class = "col">
             <h1>Waste Not</h1>
         </div>
-      </div>  
-      <div class='container'> <h3>User Add, Delete & Update</h3>
-        
-        <br>
-        <h5>To edit/delete a User, please input their email address and press Find</h5>
-        <br>
-        
-      </div> 
-      
-        <div id = "editUserSection" class='container mx-auto' data-id="">
-          <div class='mx-auto'>
-
-            <button onclick='clickGetUser()' class='btn-info' id='findUser'>Find</button>
-            <button onclick='clickUpdateUser()' class='btn-primary' id='updateUser'>Update</button>
-            <button onclick='clickDeleteUser()' class='btn-danger' id='deleteUser'>Delete</button>
-            <button onclick='clickAddUserByAdmin()' class='btn-success' id='addUser'>Add</button>
+      </div>
+      <div class="container">  
+        <div class='row'> 
+          <div class="col">
+            <h3>Add, Delete & Update Users</h3>
+          </div>
+        </div>    
+        <div class="row">  
+          <div class="col">
+            <br>
+            <h5>To edit or delete a user, please input their email address and press find</h5>
+            <br>
+          </div>
+        </div> 
+      </div>
+      <div id = "editUserSection" class='container' data-id="">
+          <div class='row'>
+            <div class="col">
+              <button onclick='clickGetUser()' type = "submit" class='btn-info' id='findUser'>Find</button>
+              <button onclick='clickUpdateUser()' type = "submit" class='btn-primary' id='updateUser'>Update</button>
+              <button onclick='clickDeleteUser()' type = "submit" class='btn-danger' id='deleteUser'>Delete</button>
+              <button onclick='clickAddUserByAdmin()' type = "submit" class='btn-success' id='addUser'>Add</button>
+            </div>
+          </div> 
+          <div class = "row">
+            <div class = "col">
+              
+              <input type="text" class="text-input-format form-control" placeholder="Name" name ="editName" id="editName">
+            </div>   
+          </div>  
+          <div class = "row">
+            <div class="col"> 
+                <input type="email" class="text-input-format form-control"  placeholder="Email Address" name ="editEmail" id="editEmail"> 
+            </div>     
+          </div> 
+          <div class = "row"> 
+            <div class="col">
+                <input type="text" class="text-input-format form-control"  placeholder="Phone Number" name ="editPhone" id="editPhone"> 
+            </div>   
+          </div> 
+          <div class="row">
+            <div class="col"> 
+                <input type="password" class="text-input-format form-control"  placeholder="Password" name ="editPassword" id="editPassword"> 
+              </div>   
+          </div> 
+      </div>
     
-            </div> 
-            <input type="text" class="text-input-format form-control" placeholder="Name" name ="editName" id="editName"> 
-            <br>  
-            <div><br></div>
-                <div> 
-                <input type="email" class="text-input-format form-control" placeholder="Email Address" name ="editEmail" id="editEmail"> 
-                <br> 
-                </div> 
-            <div><br></div>
-                <div> 
-                <input type="text" class="text-input-format form-control" placeholder="Phone Number" name ="editPhone" id="editPhone"> 
-                <br> 
-                </div> 
-                <div><br></div>
-                <div> 
-                <input type="password" class="text-input-format form-control" placeholder="Password" name ="editPassword" id="editPassword"> 
-                <br> 
-                </div> 
-                <div><br></div>
-            <div class='card bg-secondary radio form-check-inline'>
-                <div class='card-header'><h4>User Role</h4></div>
-                
-                    <div class="input-group-prepend mx-auto">
+      <div class="container">        
+          <div class='row card bg-secondary radio form-check-inline' id = "card">
+              
+                <div class='card-header'>
+                  <h4>Choose a User Role</h4>
+                </div>
+                  <div class="input-group-prepend mx-auto">
                       <div class="form-check ">
                         <label class="form-check-label">
                           <input type="radio" class="form-check-input" name="editUserRole" id="editUserRoleNone" value="None">None</label>
@@ -73,21 +87,17 @@
                           <input type="radio" class="form-check-input`" name="editUserRole" id="editUserRoleAdmin" value="Admin">Admin</label>
                       </div>
                   </div> 
-          
-                
-                  </div>
-          
-                <div><br></div>
-
-            </div>
-            <div id = "backButton" class="container h=100">
-              <div class="row">
-                  <div class="col">
-                          <a class = 'button btn btn-primary' href="adminMenu.html">Admin Menu</a>
-                  </div>
               </div>
-          </div> 
           
+      </div>     
+      <div id = "backButton" class="container h=100">
+        <div class="row">
+          <div class="col">
+              <a class = 'button btn btn-primary' href="adminMenu.html">Admin Menu</a>
+          </div>
+        </div>
+      </div> 
+         
                   
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
