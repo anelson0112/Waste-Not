@@ -37,6 +37,7 @@ body{
 }
 #card{
   justify-content: center;
+  margin: auto;
 }
 a.btn {
 
@@ -44,7 +45,7 @@ a.btn {
   text-decoration: none;
   background-color: #C3B091;
   box-shadow: 0 5px  0#7E805D;
-  padding: 1em 1.5em;
+  padding: 20px;
   position: relative;
   text-decoration: none;
   text-transform: uppercase;
@@ -62,7 +63,7 @@ a.btn:hover{
 }
 
 input[type = "number"]{
-  width: auto;
+  width: 50px;
   padding: 5px;
   border: 1px solid;
   margin: 12px;
@@ -70,9 +71,9 @@ input[type = "number"]{
 }
 
 #backButton{
-  /* background-color: #212b31; */
+
   background-color: #263836;
-  margin-top: 5px;
+  margin-top: 20px;
   
   border-style: solid;
   border-color: black;;
@@ -103,11 +104,13 @@ input[type = "number"]{
 
 
 input[type="text"] input[type = "email"]
-input[type = "password"]{
+input[type = "password"]
+input[type="tel"]{
     width: 100%;
     padding: 12px;
     border: 1px solid;
     margin: 5px;
+    border-radius: 0;
 }
 @media screen and (max-width: 600px) {
     .col-25, .col-75, input[type=submit] {
@@ -164,78 +167,26 @@ button[type = "submit"]{
 
 
 
-/* //////////PLUS MINUS BUTTON GROUP STYLING????????? */
-/* input,
-textarea {
-  border: 1px solid #eeeeee;
-  box-sizing: border-box;
-  margin: 0;
-  outline: none;
-  padding: 10px;
- 
-} 
-
-input[type="button"] {
-  -webkit-appearance: button;
-  cursor: pointer;
-}
-
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-}
-
+/* PLUS MINUS BUTTON GROUP STYLING */
 .input-group {
-  clear: both;
-  margin: 15px 0;
-  position: relative;
-}
+  border : 1px solid gray;
+  padding: 10px 24px;
 
-.input-group input[type='button'] {
-  background-color: #eeeeee;
-  min-width: 38px;
-  width: auto;
-  transition: all 300ms ease;
 }
-
+.input-group .quantity-field {
+padding: 0;
+height: 40px;
+text-align: center;
+font-size: 13px;
+margin: 0;
+}
 .input-group .button-minus,
 .input-group .button-plus {
   font-weight: bold;
   height: 38px;
   padding: 0;
   width: 38px;
-  position: relative;
+
 }
-
-.input-group .quantity-field {
-  position: relative;
-  height: 38px;
-  left: -6px;
-  text-align: center;
-  width: 62px;
-  display: inline-block;
-  font-size: 13px;
-  margin: 0 0 5px 5px;
-  resize: vertical;
-}
-
-.button-plus {
-  left: -13px;
-}
-
-.input-group input[type="number"] {
-  -moz-appearance: textfield;
-  -webkit-appearance: none;
-}
-input[type="number"]{
-  border: 1px solid #eeeeee;
-  box-sizing: border-box;
-  margin: 0;
-  outline: none;
-  padding: 10px;
-} */
-
-
-
 
 

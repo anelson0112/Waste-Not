@@ -102,6 +102,8 @@ app.post('/sendemail',(req,res,next)=>{
         } 
     });
 
+    
+
 const report = new Schema({
     location : [locationSchema],
     goods : [goodsSchema],
