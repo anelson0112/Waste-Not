@@ -7,6 +7,7 @@ mongoose.set('returnOriginal', false);
 const bodyParser = require('body-parser');
 //require nodemailer to sent emails
 const nodemailer = require('nodemailer');
+
 //mailtrap test 
 // var transport = nodemailer.createTransport({
 //     host: "smtp.mailtrap.io",
@@ -17,7 +18,16 @@ const nodemailer = require('nodemailer');
 //     }
 //   });
 //call in schema models
+//twilio for sms messages
+var twilio = require('twilio');
+var client = new twilio('AC9add5aa3984a2862ce2338259aec4bee', '2ea872e7ce5bcedc94781c6f976a75f6');
 
+// Send the text message.
+client.messages.create({
+  to: 'YOUR_NUMBER',
+  from: 'YOUR_TWILIO_NUMBER',
+  body: 'Hello from Twilio!'
+});
 
 var Goods = require ("./models/goodsDatabase.js");
 var User = require ("./models/userDatabase.js");
@@ -375,4 +385,12 @@ app.post('/sendemail',(req,res)=>{
     //if mail is sent successfully send Sent successfully as response
     }
     });
-    })
+    });
+
+    // client.messages.create({
+    //     to: 'YOUR_NUMBER',
+    //     from: 'YOUR_TWILIO_NUMBER',
+    //     body: 'Hello from Twilio!'
+    //   });
+
+    //   client.sendMessage()
