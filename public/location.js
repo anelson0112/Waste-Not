@@ -29,9 +29,9 @@ function showLocations(){
 
             let locationHtml = `<div class = "locations">
             <div class = "row">
-                <div class = "list col-lg-10" data-id="${body[i]._id}">${body[i].storeName} 
+                <div class = "list col" data-id="${body[i]._id}">${body[i].storeName} 
                 </div>
-                <div class = "delete col-lg-2" ><i class="far fa-trash-alt" id = "delete" data-id = "${body[i]._id}" ></i>
+                <div class = "delete col" ><i class="far fa-trash-alt" id = "delete" data-id = "${body[i]._id}" ></i>
                 </div> 
             </div>
         </div>`;

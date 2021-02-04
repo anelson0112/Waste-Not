@@ -87,8 +87,8 @@ async function getItemList(){
         
     };
 
-    //function to update the quanity of items using the form submit
-    document.getElementById("updateQTY").addEventListener('submit', function (event){
+    //function to update the quantity of items using the form submit
+    document.getElementById("updateButton").addEventListener('click', function (event){
         event.preventDefault();
         updateQTY();
         returnToWorkDay();
@@ -96,7 +96,7 @@ async function getItemList(){
     });
 
     function returnToWorkDay(){
-        location.href = "index.html";
+        location.href = "wastePanic.html";
         displayWorkDayMenu();
 
     }
