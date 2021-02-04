@@ -3,9 +3,9 @@ font-family: 'Playfair Display', serif; */
 
 body{
     font-family: 'Montserrat', sans-serif;
-    background-color: #36454f;
+    /* background-color: #36454f; */
     color: white;
-    
+    background-color: #263138;
 }
 #header {
   font-family: 'Playfair Display', serif;
@@ -70,8 +70,12 @@ input[type = "number"]{
 }
 
 #backButton{
-  background-color: #212b31;
+  /* background-color: #212b31; */
+  background-color: #263836;
   margin-top: 5px;
+  
+  border-style: solid;
+  border-color: black;;
 }
 
 

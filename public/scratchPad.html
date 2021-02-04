@@ -47,7 +47,15 @@
             </div>
         </div> 
         
+        <div class = "row">
+            <div class = "list col" data-id="${body[i]._id}" id = "itemName">${body[i].itemName} 
+            </div>
         
+            <div class = "qty col">
+                <label for = "qty">Quantity</label><br>
+                <input type = "number" data-name="${body[i].itemName}" name = "qty" data-id="${body[i]._id}" >
+            </div>
+        </div>
         
 
 
