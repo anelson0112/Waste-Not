@@ -25,6 +25,17 @@ const Schema = mongoose.Schema;
 //     newLocation: {type: Schema.type, ref:Location}
 //     });
 
+/*
++++++++++++Add into action Schema for reports??????++++++++++++++++
+const schema = Schema({
+  createdAt: Number,
+  updatedAt: Number,
+  name: String
+}, {
+  // Make Mongoose use Unix time (seconds since Jan 1, 1970)
+  timestamps: { currentTime: () => Math.floor(Date.now() / 1000) }
+});
+*/
 
 
 //export schema
