@@ -12,7 +12,7 @@ function clickAddUserByAdmin(){
   }).catch(function(err){
       console.log(err);
       alert("You are missing a field - all fields are required")
-      alert("This email is already taken - please use another email address")
+      //alert("This email is already taken - please use another email address")
   });
 };
 
