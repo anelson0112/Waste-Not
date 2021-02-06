@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
         <link rel="stylesheet" href="style.css">
+    </head>    
     <body>
         <div id = "header" class = "row">
             <div class = "col">
@@ -19,31 +20,20 @@
         <div id = "login" class = "container h-100">
             <div class = "row">
                 <div class = "col">
-                    <h2>Sign In</h2>
+                    <h2>Sign In To Waste Not</h2>
                 </div>
-            </div>        
-            <div class="row">
-                <div class = "col">    
-                    <label for = "email">Email Address</label>
-                </div>
-                <div class="col">   
-                    <input type = "email" id = "logInEmail" placeholder = "email" autocomplete="off" required>
-                </div>
-            </div>            
-            <div class = "row"> 
-                <div class = "col">       
-                    <label for = "logInPassword">Password</label>
-                </div>
-                <div class = "col">   
-                    <input type = "password" id = "password" placeholder="password" autocomplete="off"  required>
-                </div>
-            </div>
-            <div class = "row">
-                <div class="col">    
-                    <button id = "logIn" type = "submit" >Log In</button>
-                        </div>
-            </div>  
-        </div>     
+            </div> 
+            <div>       
+            <form id='login-form'>
+                <input type="text" autocomplete='off' id='loginEmail' placeholder="Email" />
+                <input type="password" autocomplete='off' id='loginPassword' placeholder="Password" />
+                <input type="submit" value="Log In" />
+            </form>
+            <input type="checkbox" onclick="showPassword()">Show Password
+            <br>
+            <br>
+            <a href="./register_v2.html" type='button' id='goToRegister'>Register</a>
+        </div>
         <div class="container"  id = "toAdminMenu">      
             <div class = "row"> 
                 <div class = "col">        
@@ -56,7 +46,7 @@
         </div>
         </div>  
 <!-- REGISTER SECTION -->
-<div id = "register" class = "container h-100">
+<!-- <div id = "register" class = "container h-100">
     <div class = "row">
         <div class = "col">
             <h2>Register for Waste Not</h2>
@@ -99,7 +89,7 @@
             <button id = "register" type = "submit" >Register</button>
                 </div>
     </div> 
-</div>     
+</div>      -->
 <!-- ADMIN SECTION -->
     
         <div id = "admin" class = "container h-100" style="display: none">
@@ -133,10 +123,55 @@
                 </div>
             </div>
         </div> 
+<script>
+const form = document.getElementById('login-form')
+form.addEventListener('submit', loginUser)
+
+async function loginUser(event){
+    event.preventDefault()
+    const email= document.getElementById('loginEmail').value
+    const password= document.getElementById('loginPassword').value
+
+    console.log(email)
+    console.log(password)
+
+    const result = await fetch('../login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            email,
+            password
+        })
+    }).then((res) => res.json())
+     if (result.status === 'ok'){
+        //all went fine 
+        console.log("Got the token:  ",result.data)
+        localStorage.setItem('token', result.data)
+        // window.location.href = 'login_v2.html';
+     } else {
+         alert(result.error)
+     }
+    }
+</script>
+<script>
+    function showPassword() {
+  var x = document.getElementById("loginPassword");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+</script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script src ="index.js"></script>
+     <!-- <script src ="index.js"></script> -->
+    <script src ="/login-server-v2.js"></script>
+
+
     
     </body>
 </html>

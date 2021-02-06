@@ -29,9 +29,9 @@ const Schema = mongoose.Schema;
 //this schema makes it easy to put the User schema into our other data (which will tie in w/ who is logged in)
 const userSchema = new Schema ({
     //username is stored as a string 
-    name: {type: String, required: true, maxlength: 30},
+    name: {type: String, required: true, maxlength: 50},
     //password is stored as a string 
-    password: {type: String, required: true, maxlength: 20},
+    password: {type: String, required: true},
     //email is stored as a string, email must be unique  
     email: {type: String, required: true, unique: true},
     //phone is stored as a string, email must be unique  
