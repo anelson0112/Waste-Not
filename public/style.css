@@ -70,7 +70,7 @@ input[type = "number"]{
 
 }
 
-#backButton{
+#backButton {
 
   background-color: #263836;
   margin-top: 20px;
@@ -79,7 +79,14 @@ input[type = "number"]{
   border-color: black;;
 }
 
+.backToLogIn{
 
+  background-color: #263836;
+  margin-top: 20px;
+  
+  border-style: solid;
+  border-color: black;;
+}
 /* #login {
 
     width: 50%;

@@ -27,112 +27,106 @@
                     <label for = "email">Email Address</label>
                 </div>
                 <div class="col">   
-                    <input type = "email" id = "logInEmail" placeholder = "email" autocomplete="off" required>
+                    <input type = "email" id = "email" placeholder = "email" autocomplete="off" required>
                 </div>
             </div>            
             <div class = "row"> 
                 <div class = "col">       
-                    <label for = "logInPassword">Password</label>
+                    <label for = "password">Password</label>
                 </div>
                 <div class = "col">   
                     <input type = "password" id = "password" placeholder="password" autocomplete="off"  required>
                 </div>
             </div>
+
             <div class = "row">
                 <div class="col">    
                     <button id = "logIn" type = "submit" >Log In</button>
                         </div>
             </div>  
-        </div>     
+        </div> 
+       <p>Temporary navigation buttons</p>    
         <div class="container"  id = "toAdminMenu">      
             <div class = "row"> 
                 <div class = "col">        
-                    <a class = 'btn btn-primary' href = "adminMenu.html" role = "button" >Admin Menu</a>
+                    <a class = 'btn btn-primary' onclick="displayAdmin()" role = "button" >Admin Menu</a>
                 </div>
                 <div class="col">
-                <a class = 'btn btn-primary' href = "workDayMenu.html" role = "button" >Work Day Menu</a>
+                <a class = 'btn btn-primary' onclick="displayWorkDayMenu()" role = "button" >Barista Menu</a>
                 </div>
-            </div>
-        </div>
-        </div>  
-<!-- REGISTER SECTION -->
-<div id = "register" class = "container h-100">
-    <div class = "row">
-        <div class = "col">
-            <h2>Register for Waste Not</h2>
-        </div>
-    </div> 
-    <div class="row">
-        <div class = "col">    
-            <label for = "name">Name</label>
-        </div>
-        <div class="col">   
-            <input type = "text" id = "registerName" placeholder = "name" autocomplete="off" required>
-        </div>
-    </div>                 
-    <div class="row">
-        <div class = "col">    
-            <label for = "email">Email Address</label>
-        </div>
-        <div class="col">   
-            <input type = "email" id = "registerEmail" placeholder = "email" autocomplete="off" required>
-        </div>
-    </div>            
-    <div class = "row"> 
-        <div class = "col">       
-            <label for = "phone">Phone Number</label>
-        </div>
-        <div class = "col">   
-            <input type = "tel" id = "registerPhone" placeholder="Phone Number" autocomplete="off" required>
-        </div>
-    </div> 
-    <div class = "row"> 
-        <div class = "col">       
-            <label for = "password">Password</label>
-        </div>
-        <div class = "col">   
-            <input type = "password" id = "registerPassword" placeholder="password" autocomplete="off" required>
-        </div>
-    </div>
-    <div class = "row">
-        <div class="col">    
-            <button id = "register" type = "submit" >Register</button>
-                </div>
-    </div> 
-</div>     
-<!-- ADMIN SECTION -->
-    
-        <div id = "admin" class = "container h-100" style="display: none">
-            <div class = "row">
-                <div class = "col-lg-6">
-                    <a class = 'btn btn-primary' href = "addItem.html" role = "button" >Add Item Menu</a>
-                </div>
-                <div class="col-lg-6">
-                    <a class='btn btn-primary' href='/user-updates.html' id = "addUpdateUser">Add or Update User</a>
-                </div>
-            </div>     
-            <div class="row">
-                <div class="col-lg-6">       
-                    <button type="submit" id = "addLocation">Add Location</button>
-                </div>
-                <div class="col-lg-6">    
-                    <button type="submit" id = "goToWorkAdmin" class = 'btn btn-primary' onclick = "displayWorkDayMenu()">Go to Work Day</button>
-                </div>
+                <div class="col">
+                    <a class = 'btn btn-primary' onclick="displayBakerMenu()" role = "button" >Baker Menu</a>
+                    </div>
             </div>
         </div>
         
+<!-- ADMIN SECTION -->
+ <p>Hidden Admin Section</p>   
+<div id = "admin" class = "container h-100" style="display: none">
+    <div class = "row">
+        <div class = "col">
+            <a class = 'btn btn-primary' href = "addItem.html" role = "button" >Add Item</a>
+        </div>
+        <div class="col">
+            <a class='btn btn-primary' href='user-updates.html' id = "addUpdateUser">User Menu</a>
+        </div>
+    </div>     
+    <div class="row">
+        <div class="col">       
+            <a class='btn btn-primary' href='location.html' id = "addLocation">Add Location</a>
+        </div>
+        <div class="col">    
+            <a class='button btn btn-primary' href='workDayMenu.html'>Go to Work</a>
+        </div>
+    </div>
+
+<div  class=" backToLogIn container h=100">
+    <div class="row">
+        <div class="col">
+            <a class = 'button btn btn-primary' onclick="backToLogIn()">Back to Log In</a>
+        </div>
+    </div>
+</div>
+</div>        
 <!-- WORK DAY SECTION -->
-        <div id = "workDayMenu" class = "container h-100" style="display: none">
+<p>Hidden Barista Menu</p>
+<div id = "workDayMenu" class = "container h-100" style="display: none">
+    <div class = "row">
+        <div class = "col">
+            <a class = 'btn btn-primary' href = "inventoryUpdate.html" role = "button" >Update Inventory</a>
+        </div>
+       
+        <div class="col">
+            <a class = 'btn btn-primary' href = "wastePanic.html" role = "button" >Go To Work</a>
+        </div>
+    </div>
+
+<div class=" backToLogIn container h=100">
+    <div class="row">
+        <div class="col">
+                <a class = 'button btn btn-primary' onclick="backToLogIn()">Back To Log In</a>
+        </div>
+    </div>
+</div> 
+</div>
+
+        <!-- baker section -->
+        <p>Hidden Baker Menu</p>
+        <div id="bakerSection" class="container h =100" style="display: none">
             <div class = "row">
-                <div class = "col-lg-6">
-                    <a class = 'btn btn-primary' href = "inventoryUpdate.html" role = "button" >Update Inventory</a>
+                <div class = "col">
+                    <a class = 'btn btn-primary' href = "addItem.html" role = "button" >Add Item Menu</a>
                 </div>
-               
-                <div class="col-lg-6">
-                    <a class = 'btn btn-primary' href = "wastePanic.html" role = "button" >Go To Work</a>
+            </div>    
+        
+        <div class=" backToLogIn container h=100">
+            <div class="row">
+                <div class="col">
+                        <a class = 'button btn btn-primary' onclick="backToLogIn()">Back To Log In</a>
                 </div>
             </div>
         </div> 
+    </div>   
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
