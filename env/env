@@ -1,0 +1,10 @@
+MongoDB login credentials:
+
+    mongoInfo = wastenotskilledkc:madANDal4life2021@wastenot1.sj0ff.mongodb.net/WasteNot1?retryWrites=true&w=majority
+
+JWT Secrets:    
+
+    JWT_SECRET = 84ecdefe980023fa00045f614b4b4e957bc69521031bb46383528051df9ac128
+    REFRESH_JWT_SECRET = 397A24432646294A404E635266546A576E5A7234753778214125442A472D4B61
+
+    
