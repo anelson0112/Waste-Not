@@ -322,7 +322,7 @@ app.delete("/location/:id", function (request, response){
 });
 //GET FULL LIST OF LOCATIONS
 
-app.get("/locations", function (request, response){
+app.get('/locations', function (request, response){
 
     Location.find (function(err, locations){
         if (err)
@@ -330,6 +330,21 @@ app.get("/locations", function (request, response){
             response.send(locations);
             
         
+    });
+});
+
+//GET SINGLE LOCATION
+app.get("/location/:id", function (request, response){
+
+    
+    Location.findById({_id: request.params.id},function (err, location){
+
+        if (err){
+        console.error(err);
+        return;
+        }
+        console.log(location);
+        response.status(200).send(location);
     });
 });
 //SEND EMAIL
