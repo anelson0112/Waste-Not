@@ -113,4 +113,11 @@ document.getElementById("goToInventoryUpdate").addEventListener('click', functio
     selectedLocation();
     
 
-})
+});
+
+//function to log out
+document.getElementById("logOut").addEventListener('click', function(event){
+    event.preventDefault();
+    location.href = "index.html";
+    localStorage.clear();
+});

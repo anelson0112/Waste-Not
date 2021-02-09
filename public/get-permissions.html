@@ -14,20 +14,39 @@
 <body>
     <div id = "header" class = "row">
         <div class = "col">
-            <h1>Thanks for registering.</h1>
+            <h1>Waste Not</h1>
         </div>
     </div>
     <div class='container'>
-        <h2>Almost done - follow these instructions:</h2>
-            <div>
-            <ol style="line-height:180%">    
-            <h4>1. Please see a supervisor to get your User Role modified to access Waste Not. </h4>
-            <h4>2. After that is complete, please log back in Waste Not and you'll have access!</h4>
-            </ol>
-            </div> 
-            <a href="./login_v2.html" type='button' id='goToLogin'>Login</a>     
+        <div class="row">
+            <div class="col">
+                <h2>Thank You for Registering</h2>
+            </div>
+        </div>
     </div>
+    <div class='container'>   
+        <div class = "row">
+            <div class="col">
+                 <h3>Almost done - follow these instructions:</h3>
+            </div>    
+        </div>    
+        <ol>
+            <li>Please see a supervisor to get your User Role modified to access Waste Not.</li>
+            <li>After that is complete, please log back in Waste Not and you'll have access!</li>
+        </ol>
+    </div>
+    <div class="container" id="logIn">
+        <div class="row">
+           <div class="col">
+               <a class = "btn btn-primary" href="./index.html" role='button' id='goToLogin'> Go to Login</a>
+           </div>
+       </div>            
+   </div>
     <script>
         const passedJwtToken = localStorage.getItem('token')
         console.log('heres the passed token:  ',passedJwtToken)
     </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>  
+</body>
