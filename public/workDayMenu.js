@@ -95,7 +95,7 @@ document.getElementById('locationDrop').addEventListener('change', function (eve
 
     console.log(selectedLoc);
     
-    selectedLoc.innerHTML += `<h5 id = "${event.target.options[event.target.selectedIndex].dataset.id}" value = "${event.target.value}">${event.target.value}</h5>`;
+    selectedLoc.innerHTML += `<h2 id = "${event.target.options[event.target.selectedIndex].dataset.id}" value = "${event.target.value}">${event.target.value}</h2>`;
 
     event.preventDefault();
    localStorage.setItem("locationName",event.target.value);
