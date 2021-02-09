@@ -1,9 +1,9 @@
 //const lookupEmail = document.getElementById('editEmail').value;
 
 
-//CLIENT SIDE ADD USER
-//CLIENT SIDE ADD USER
-//CLIENT SIDE ADD USER
+//!CLIENT SIDE ADD USER
+//!CLIENT SIDE ADD USER
+//!CLIENT SIDE ADD USER
 
 function clickAddUserByAdmin(){
     addUser().then(function(body){
@@ -45,10 +45,10 @@ console.log (user);
  return true
 }
 
-//CLIENT SIDE FIND USER
-//CLIENT SIDE FIND USER
-//CLIENT SIDE FIND USER
-//let lookupEmail = document.getElementById('editEmail').value;
+//!CLIENT SIDE FIND USER
+//!CLIENT SIDE FIND USER
+//!CLIENT SIDE FIND USER
+
 function clickGetUser(lookupEmail){
     lookupEmail = document.getElementById('editEmail').value;
 
@@ -116,9 +116,9 @@ async function getUser(lookupEmail){
     return body;
 }
 
-//CLIENT SIDE DELETE USER
-//CLIENT SIDE DELETE USER
-//CLIENT SIDE DELETE USER
+//!CLIENT SIDE DELETE USER
+//!CLIENT SIDE DELETE USER
+//!CLIENT SIDE DELETE USER
 
 function clickDeleteUser(deleteId){
    deleteId = document.getElementById('editUserSection').getAttribute('data-id'); 
@@ -156,9 +156,9 @@ console.log(deleteId);
 
 
 
-//CLIENT SIDE EDIT USER
-//CLIENT SIDE EDIT USER
-//CLIENT SIDE EDIT USER
+//!CLIENT SIDE EDIT USER
+//!CLIENT SIDE EDIT USER
+//!CLIENT SIDE EDIT USER
 
 
 

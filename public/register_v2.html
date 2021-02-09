@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Waste Not Register</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Playfair+Display&display=swap" rel="stylesheet">    
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+        <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id = "header" class = "row">
+        <div class = "col">
+            <h1>Waste Not</h1>
+        </div>
+    </div>
+    <div id = "register" class = "container h-100">
+    <div class = "row">
+        <div class = "col">
+            <h2>Register for Waste Not</h2>
+        </div>
+    </div> 
+    <form id='reg-form'>
+        <input type="text" autocomplete='off' id='name' placeholder='Name' />
+        <input type="text" autocomplete='off' id='phone' placeholder="Phone" />
+        <input type="text" autocomplete='off' id='regEmail' placeholder="Email" />
+        <input type="password" autocomplete='off' id='regPassword' placeholder="Password" />
+        <input type="submit" value="Register" />
+    </form>
+    <input type="checkbox" onclick="showPassword()">Show Password
+    <br>
+    <br>
+    <a href="./login_v2.html" type='button' id='goToLogin'>Login</a>
+    </div>
+<script>
+const form = document.getElementById('reg-form')
+form.addEventListener('submit', registerUser)
+
+async function registerUser(event){
+    event.preventDefault()
+    const name= document.getElementById('name').value
+    const phone= document.getElementById('phone').value
+    const email= document.getElementById('regEmail').value
+    const password= document.getElementById('regPassword').value
+
+    console.log(name)
+    console.log(password)
+
+    const result = await fetch('../register', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            name,
+            phone,
+            email,
+            password
+        })
+    }).then((res) => res.json())
+     if (result.status === 'ok'){
+        //all went fine 
+         alert('Registration successful')
+         console.log('Registration successful')
+         window.location.href = 'get-permissions.html';
+        return true;
+     } else {
+         alert(result.error)
+     }
+    }
+</script>
+<script>
+    function showPassword() {
+  var x = document.getElementById("regPassword");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+</script>
+</body>
+</html>
