@@ -293,3 +293,14 @@ document.getElementById("panicSubmit").addEventListener('click', function(event)
     location.reload();
 });
 
+//event listener to initiate list function on page load
+   
+
+window.addEventListener("load", function (event){
+    var currentLocation = localStorage.getItem("locationName");
+    currentLocation;
+    let locDiv = document.getElementById("selectedLocation");
+    let locHtml = `<h2">${currentLocation}</h2>`;
+    locDiv.innerHTML += locHtml;
+    
+});

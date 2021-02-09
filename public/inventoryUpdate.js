@@ -46,11 +46,7 @@ async function getItemList(){
             console.log(err);
         });
     };
-    //event listener to initiate list function on page load
-    window.addEventListener("load", function(event){    
-        carryLocation();
-        inventoryList();
-    })
+    
    // asynch function to update quantities
     async function updateQTY(){
             
@@ -101,38 +97,17 @@ async function getItemList(){
         displayWorkDayMenu();
 
     }
-//
-async function getSingleLocation(){
-    
 
-    let requestOptions = {
-        method : "GET",
-        headers : {
-            "Content-Type" : "application/json"
-        },
-    }
-    console.log("get single location");
 
-    const response = await fetch('/location/' + locId, requestOptions);
-    const body = await response.json();
+//event listener to initiate list function on page load
+   
 
-    if (response.status != 200){
-        throw Error(body.message);
-    }
-    return body;
-};
+window.addEventListener("load", function (event){
+    var currentLocation = localStorage.getItem("locationName");
+    currentLocation;
+    let locDiv = document.getElementById("selectedLocation");
+    let locHtml = `<h2">${currentLocation}</h2>`;
+    locDiv.innerHTML += locHtml;
+    inventoryList();
+});
 
-function carryLocation(){
-    let storeName = document.getElementById("selectedLocation");
-    
-    getSingleLocation().then(function(location){
-        storeName.innerHTML += location.storeName;
-        console.log("line 129");
-    }).catch(function(error){
-        console.log(error);
-    });
-};
-
-// window.addEventListener("load", function (event){
-//     carryLocation();
-// });
