@@ -17,23 +17,52 @@
             <h1>Waste Not</h1>
         </div>
     </div>
-    <div id = "register" class = "container h-100">
-    <div class = "row">
-        <div class = "col">
+<div id = "register" class = "container h-100">
+        <div class = "row">
+            <div class = "col">
             <h2>Register for Waste Not</h2>
-        </div>
-    </div> 
+            </div>
+        </div> 
     <form id='reg-form'>
-        <input type="text" autocomplete='off' id='name' placeholder='Name' />
-        <input type="text" autocomplete='off' id='phone' placeholder="Phone" />
-        <input type="text" autocomplete='off' id='regEmail' placeholder="Email" />
-        <input type="password" autocomplete='off' id='regPassword' placeholder="Password" />
-        <input type="submit" value="Register" />
+        <div class = "row">
+            <div class = "col">    
+                <input type="text" autocomplete='off' id='name' placeholder='Name' />
+            </div>
+        </div>    
+        <div class = "row">
+            <div class = "col">
+                <input type="text" autocomplete='off' id='phone' placeholder="Phone" />
+            </div>
+        </div>
+        <div class = "row">
+            <div class = "col">
+                <input type="text" autocomplete='off' id='regEmail' placeholder="Email" />
+            </div>
+        </div>
+        <div class = "row">
+            <div class = "col">
+                <input type="password" autocomplete='off' id='regPassword' placeholder="Password" />
+            </div>
+        </div>
+        <div class = "row">
+            <div class = "col">
+                <input type="submit" value="Register" />
+            </div>
+        </div>
+        
     </form>
-    <input type="checkbox" onclick="showPassword()">Show Password
-    <br>
-    <br>
-    <a href="./login_v2.html" type='button' id='goToLogin'>Login</a>
+        <div class="row">
+            <div class="col">
+                <input type="checkbox" onclick="showPassword()">Show Password
+            </div>
+        </div>
+    </div>
+    <div class="container" id="logIn">
+         <div class="row">
+            <div class="col">
+                <a class = "btn btn-primary" href="./index.html" role='button' id='goToLogin'> Go to Login</a>
+            </div>
+        </div>            
     </div>
 <script>
 const form = document.getElementById('reg-form')
