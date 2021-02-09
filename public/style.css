@@ -87,6 +87,14 @@ input[type = "number"]{
   border-style: solid;
   border-color: black;
 }
+
+.logOut{
+  background-color: #263836;
+  margin-top: 20px;
+  
+  border-style: solid;
+  border-color: black;
+}
 .changePassword{
 
   background-color: #263836;

@@ -534,13 +534,13 @@ app.post('/sendemail',(req,res)=>{
     var mailOptions = {
     from: 'wastenotskilledkc@gmail,com',
     to: 'anelson0112@skilledkc.org,               mgengelbach0161@skilledkc.org',
-    subject: `Running low on- ${req.body.itemName}`,
+    subject: `Running low on- ${req.body.itemName} at ${req.body.storeName}`,
     html:
     // `<h1>Contact details</h1>
     // <h2> name:${req.body.name} </h2><br>
     // <h2> email:${req.body.email} </h2><br>
     // <h2> phonenumber:${req.body.phonenumber} </h2><br>
-    `<h2> ${req.body.itemName} is running low and needs restocking</h2>`
+    `<h2> ${req.body.itemName} is running low at ${req.body.location} and needs restocking</h2>`
     };
     /*
      Here comes the important part, sendMail is the method which actually sends email, it takes mail options and

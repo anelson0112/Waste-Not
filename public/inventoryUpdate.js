@@ -106,7 +106,7 @@ window.addEventListener("load", function (event){
     var currentLocation = localStorage.getItem("locationName");
     currentLocation;
     let locDiv = document.getElementById("selectedLocation");
-    let locHtml = `<h2">${currentLocation}</h2>`;
+    let locHtml = `<h2>${currentLocation}</h2>`;
     locDiv.innerHTML += locHtml;
     inventoryList();
 });

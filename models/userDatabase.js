@@ -31,7 +31,7 @@ const userSchema = new Schema ({
     //username is stored as a string 
     name: {type: String, required: true, maxlength: 30},
     //password is stored as a string 
-    password: {type: String, required: true, maxlength: 20},
+    password: {type: String, required: true},
     //email is stored as a string, email must be unique  
     email: {type: String, required: true, unique: true},
     //phone is stored as a string, email must be unique  

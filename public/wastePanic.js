@@ -259,6 +259,7 @@ async function sendEmail(){
     
     let panicItem  = { 
       itemName : this.document.getElementById("itemName").value,
+      storeName : localStorage.getItem("locationName"),
     }
     
     console.log(panicItem);
@@ -280,7 +281,9 @@ async function sendEmail(){
 function notify(){
     sendEmail().then(function(good){
         let itemName = document.getElementById("itemName").value;
+        let storeName = localStorage.getItem("locationName");
         console.log(itemName);
+        console.log(storeName);
     }).catch(function(error){
         console.log(error)
     });
@@ -300,7 +303,7 @@ window.addEventListener("load", function (event){
     var currentLocation = localStorage.getItem("locationName");
     currentLocation;
     let locDiv = document.getElementById("selectedLocation");
-    let locHtml = `<h2">${currentLocation}</h2>`;
+    let locHtml = `<h2>${currentLocation}</h2>`;
     locDiv.innerHTML += locHtml;
     
 });
