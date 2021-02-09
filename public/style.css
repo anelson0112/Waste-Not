@@ -85,7 +85,16 @@ input[type = "number"]{
   margin-top: 20px;
   
   border-style: solid;
-  border-color: black;;
+  border-color: black;
+}
+.changePassword{
+
+  background-color: #263836;
+  margin-top: 20px;
+  
+  border-style: solid;
+  border-color: black;
+
 }
 /* #login {
 
