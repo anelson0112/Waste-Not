@@ -510,19 +510,7 @@ app.get("/location/:id", function (request, response){
 app.post('/sendemail',(req,res)=>{
     console.log("line 287");
     console.log(req.body);
-    /*Transport service is used by node mailer to send emails, it takes service and auth object as parameters.
-    here we are using gmail as our service
-    In Auth object , we specify our email and password
-    */
-//    var transport = nodemailer.createTransport({
-//     host: "smtp.mailtrap.io",
-//     port: 2525,
-//     auth: {
-//       user: "5ba0b7386d7850",
-//       pass: "e15c26797c9e26"
-//     }
     
-//     });
     let transport = nodemailer.createTransport({
     service : 'gmail',
     auth :{
@@ -559,6 +547,47 @@ app.post('/sendemail',(req,res)=>{
     }
     });
     });
+//NOTIFICATION EMAIL FOR NEW USER
+    app.post('/sendemail/newUser',(req,res)=>{
+        console.log("line 287");
+        console.log(req.body);
+        
+        let transport = nodemailer.createTransport({
+        service : 'gmail',
+        auth :{
+            user: 'wastenotskilledkc@gmail.com',
+            pass : 'madANDal4life@2021',
+        }
+        });
+       
+        var mailOptions = {
+        from: 'wastenotskilledkc@gmail,com',
+        to: 'anelson0112@skilledkc.org,               mgengelbach0161@skilledkc.org',
+        subject: `New User Has Registered For Waste Not`,
+        html:
+        // `<h1>Contact details</h1>
+        // <h2> name:${req.body.name} </h2><br>
+        // <h2> email:${req.body.email} </h2><br>
+        // <h2> phonenumber:${req.body.phonenumber} </h2><br>
+        `<h2> ${req.body.name} has registered with email ${req.body.email} and needs to be assigned a user role. </h2>`
+        };
+        /*
+         Here comes the important part, sendMail is the method which actually sends email, it takes mail options and
+        call back as parameter
+        */
+        transport.sendMail(mailOptions, function(error, info){
+        if (error) {
+        console.log(error);
+        res.send('error') // if error occurs send error as response to client
+        }
+        else {
+        console.log('Email sent: ' + info.response);
+        
+        res.send('Sent Successfully')
+        //if mail is sent successfully send Sent successfully as response
+        }
+        });
+        });
 
     // client.messages.create({
     //     to: 'YOUR_NUMBER',

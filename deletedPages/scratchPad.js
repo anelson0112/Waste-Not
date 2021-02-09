@@ -229,3 +229,17 @@ document.getElementById('locationDrop').addEventListener('change', function (eve
     selectedLocation();
 })
 
+/*Transport service is used by node mailer to send emails, it takes service and auth object as parameters.
+    here we are using gmail as our service
+    In Auth object , we specify our email and password
+    */
+//    var transport = nodemailer.createTransport({
+//     host: "smtp.mailtrap.io",
+//     port: 2525,
+//     auth: {
+//       user: "5ba0b7386d7850",
+//       pass: "e15c26797c9e26"
+//     }
+    
+//     });
+
