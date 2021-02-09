@@ -1,12 +1,29 @@
+require('dotenv').config();
+//require express
+const express = require("express");
+const app = express();
+//add path library
+const path = require("path");
+const { response } = require('express');
+const { default: jwtDecode } = require('jwt-decode');
+//require body parser
+const bodyParser = require('body-parser');
+//require nodemailer to sent emails
+const nodemailer = require('nodemailer');
+const bcrypt = require('bcrypt')
+const methodOverride = require('method-override')
+const jwt = require ('jsonwebtoken')
+const JWT_Secret = process.env.JWT_SECRET;
+const JWT_Refresh = process.env.REFRESH_JWT_SECRET;
+
+
+
 //require mongoose-translates Node.js
 const mongoose = require ("mongoose");
 mongoose.set('useFindAndModify', false);
 //returns object AFTER update was applied
 mongoose.set('returnOriginal', false);
-//require body parser
-const bodyParser = require('body-parser');
-//require nodemailer to sent emails
-const nodemailer = require('nodemailer');
+
 
 //mailtrap test 
 // var transport = nodemailer.createTransport({
@@ -19,34 +36,33 @@ const nodemailer = require('nodemailer');
 //   });
 //call in schema models
 //twilio for sms messages
-var twilio = require('twilio');
-var client = new twilio('AC9add5aa3984a2862ce2338259aec4bee', '2ea872e7ce5bcedc94781c6f976a75f6');
+// var twilio = require('twilio');
+// var client = new twilio('AC9add5aa3984a2862ce2338259aec4bee', '2ea872e7ce5bcedc94781c6f976a75f6');
 
-// Send the text message.
-client.messages.create({
-  to: 'YOUR_NUMBER',
-  from: 'YOUR_TWILIO_NUMBER',
-  body: 'Hello from Twilio!'
-});
+// // Send the text message.
+// client.messages.create({
+//   to: 'YOUR_NUMBER',
+//   from: 'YOUR_TWILIO_NUMBER',
+//   body: 'Hello from Twilio!'
+// });
 
 var Goods = require ("./models/goodsDatabase.js");
 var User = require ("./models/userDatabase.js");
 var Location = require ("./models/locationDatabase.js");
 var Action = require ("./models/actionDatabase.js");
 
-//require express
-const express = require("express");
-//call in expressnpm kickoff
 
-const app = express();
-//add path library
-const path = require("path");
+
+
 
 //declare port to connect to
 const port = 3000;
 
 //connect to Atlas cluster
-const mongoDB = "mongodb+srv://wastenotskilledkc:madANDal4life2021@wastenot1.sj0ff.mongodb.net/WasteNot1?retryWrites=true&w=majority";
+const mongoLogIn = process.env.mongoInfo
+const mongoDB = 'mongodb+srv://'+ mongoLogIn;
+
+// const mongoDB = "mongodb+srv://wastenotskilledkc:madANDal4life2021@wastenot1.sj0ff.mongodb.net/WasteNot1?retryWrites=true&w=majority";
 
 
 //accessing the connect method of mongoose
@@ -70,8 +86,14 @@ app.use(
         path.join(__dirname, 'public')));
 
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended:true}));
+// app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({extended:true}));
+
+app.use(express.urlencoded({ extended: false}))
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+app.use(methodOverride('_method'))
+app.use(express.json())
 
 //open up server, list on specific id and port
 //ip address aka hostnames
@@ -195,8 +217,134 @@ async function getUpdateGood(data){
     }); 
 }
 
-//!SERVER SIDE ADD USER
-//!SERVER SIDE ADD USER
+//!   USER SELF REGISTER
+
+app.post('/register', async (req, res) =>{
+    console.log(req.body)
+    var email = req.body.email
+
+    if((!req.body.name || typeof req.body.name != 'string')){
+        return res.json({status: 'error', error: 'Invalid name - name is a required field'})
+    }
+
+    if((!req.body.email || typeof req.body.email != 'string')){
+        return res.json({status: 'error', error: 'Invalid email - email is a required field.'})
+    }
+
+    const mailFormat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+    if (email.match(mailFormat)===null){ 
+        return res.json({status: 'error', error: "You have entered an invalid email address!"})
+    }
+
+    if ((!req.body.phone || typeof req.body.phone != 'string')){
+        return res.json({status: 'error', error: 'Invalid phone - phone is a required field.'})
+    }
+
+    if((!req.body.password || typeof req.body.password != 'string')){
+        return res.json({status: 'error', error: 'Invalid password - password is a required field.'})
+    }
+
+    if((req.body.password.length < 6)){
+        return res.json({status: 'error', error: 'Please use a password of at least 6 characters.'})
+    }
+
+    const hashedPassword = await bcrypt.hash(req.body.password,10)
+    var newUser = {
+        name: req.body.name,
+        email: req.body.email,
+        password: hashedPassword,
+        phone: req.body.phone,
+        user_role: "None"
+         }
+    try {
+        let user = new User(newUser)
+       const response = await user.save(newUser)
+       console.log('New User saved successfully:',response)
+       return res.json({status: 'ok'})
+
+    } catch(error){
+        console.log(JSON.stringify(error))
+        if(error.code === 11000) {
+            return res.json({status: 'error', error: "Email already in use - please use a different email address."})
+        }
+        throw(error) 
+    }
+});
+//!     USER LOGIN
+
+
+app.post('/login', async (req, res) =>{
+    console.log(req.body)
+    const {email, password} = req.body
+
+    const user = await User.findOne({email}).lean()
+
+    if(!user){
+        return res.json({status: 'error', error: 'Invalid username/password'})
+    }
+
+    if(await bcrypt.compare(password, user.password)){
+        const logUser_Role = user.user_role
+        const token = jwt.sign({
+            id: user._id, 
+            name:user.name,
+            user_role:user.user_role
+        }, JWT_Secret, {expiresIn: '12h'})
+        return res.json({status: 'ok', data: token})
+        
+    }
+     res.json({status: 'error', error: 'Invalid username/password'})
+
+})
+
+//! FIND USER FOR ROLE BASED PERMISSIONS
+app.get('/users/:email', (request, response) => {
+    console.log('heres email from client: ',request.params.email);
+    User.findOne({email: `${request.params.email}`}).exec((err, user) => {
+        if (err) return console.error(err);
+        console.log("here's the user info:  ", user)
+        console.log('heres user role:  ',user.user_role)
+        response.send(user);
+    })
+});
+//!     USER SELF CHANGE PASSWORD
+
+
+
+app.post('/change-password', async (req, res) =>{
+    console.log(req.body)
+    const {token, newpassword} = req.body
+
+    if((!req.body.newpassword || typeof req.body.newpassword != 'string')){
+        return res.json({status: 'error', error: 'Invalid password - password is a required field.'})
+    }
+
+    if((req.body.newpassword.length < 6)){
+        return res.json({status: 'error', error: 'Please use a password of at least 6 characters.'})
+    }
+
+
+    try{
+    const user = jwt.verify(token, JWT_Secret)
+    console.log(user)
+    const _id = user.id
+    const hashedPassword = await bcrypt.hash(newpassword,10)
+
+    await User.updateOne({_id}, {
+        $set: {password: hashedPassword}
+    }
+        )
+    return res.json({status: 'ok'} )
+     
+    } catch (error){
+    res.json({status: 'error', error: 'Invalid token'})
+    }
+})
+
+
+
+
 //!SERVER SIDE ADD USER
 
 app.post("/users", (request, response) => {
@@ -352,6 +500,7 @@ app.get("/location/:id", function (request, response){
         console.error(err);
         return;
         }
+        console.log("line 346");
         console.log(location);
         response.status(200).send(location);
     });
@@ -418,3 +567,7 @@ app.post('/sendemail',(req,res)=>{
     //   });
 
     //   client.sendMessage()
+
+
+
+    module.exports = jwtDecode;

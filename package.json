@@ -19,11 +19,18 @@
   },
   "homepage": "https://github.com/anelson0112/Waste-Not#readme",
   "dependencies": {
+    "add": "^2.0.6",
+    "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "jquery": "^3.5.1",
+    "jwt-decode": "^3.1.2",
+    "method-override": "^3.0.0",
     "nodemailer": "^6.4.17",
     "nodemon": "^2.0.7",
-    "twilio": "^3.55.1"
+    "or": "^0.2.0",
+    "twilio": "^3.55.1",
+    "yarn": "^1.22.10"
   }
 }
