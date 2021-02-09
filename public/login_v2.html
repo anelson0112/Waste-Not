@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Waste Not Log In</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Playfair+Display&display=swap" rel="stylesheet">    
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+        <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <body>
+        <div id = "header" class = "row">
+            <div class = "col">
+                <h1>Waste Not</h1>
+            </div>
+        </div>
+        <div id='loggedUserRole' data-id = ""></div>
+<!-- LOG IN SECTION -->
+        <div id = "login" class = "container h-100">
+            <div class = "row">
+                <div class = "col">
+                    <h2>Sign In To Waste Not</h2>
+                </div>
+            </div> 
+            <div>       
+            <form id='login-form'>
+                <input type="text" autocomplete='off' id='loginEmail' placeholder="Email" />
+                <input type="password" autocomplete='off' id='loginPassword' placeholder="Password" />
+                <input type="submit" value="Log In" />
+            </form>
+            <input type="checkbox" onclick="showPassword()">Show Password
+            <br>
+            <br>
+            <a href="./register_v2.html" type='button' id='goToRegister'>Register</a>
+        </div>
+        <!-- <div class="container"  id = "toAdminMenu">      
+            <div class = "row"> 
+                <div class = "col">        
+                    <a class = 'btn btn-primary' href = "adminMenu.html" role = "button" >Admin Menu</a>
+                </div>
+                <div class="col">
+                <a class = 'btn btn-primary' href = "workDayMenu.html" role = "button" >Work Day Menu</a>
+                </div>
+            </div>
+        </div> -->
+        </div>  
+
+<!-- ADMIN SECTION -->
+<p>Hidden Admin Section</p>   
+<div id = "admin" class = "container h-100" style="display: none">
+    <div class = "row">
+        <div class = "col">
+            <a class = 'btn btn-primary' href = "addItem.html" role = "button" >Add Item</a>
+        </div>
+        <div class="col">
+            <a class='btn btn-primary' href='user-updates.html' id = "addUpdateUser">User Menu</a>
+        </div>
+    </div>     
+    <div class="row">
+        <div class="col">       
+            <a class='btn btn-primary' href='location.html' id = "addLocation">Add Location</a>
+        </div>
+        <div class="col">    
+            <a class='button btn btn-primary' href='workDayMenu.html'>Go to Work</a>
+        </div>
+    </div>
+
+<div  class=" backToLogIn container h=100">
+    <div class="row">
+        <div class="col">
+            <a class = 'button btn btn-primary' onclick="backToLogIn()">Back to Log In</a>
+        </div>
+    </div>
+</div>
+</div>        
+<!-- WORK DAY SECTION -->
+<p>Hidden Barista Menu</p>
+<div id = "workDayMenu" class = "container h-100" style="display: none">
+    <div class = "row">
+        <div class = "col">
+            <a class = 'btn btn-primary' href = "inventoryUpdate.html" role = "button" >Update Inventory</a>
+        </div>
+       
+        <div class="col">
+            <a class = 'btn btn-primary' href = "wastePanic.html" role = "button" >Go To Work</a>
+        </div>
+    </div>
+
+<div class=" backToLogIn container h=100">
+    <div class="row">
+        <div class="col">
+                <a class = 'button btn btn-primary' onclick="backToLogIn()">Back To Log In</a>
+        </div>
+    </div>
+</div> 
+</div>
+
+        <!-- baker section -->
+        <p>Hidden Baker Menu</p>
+        <div id="bakerSection" class="container h =100" style="display: none">
+            <div class = "row">
+                <div class = "col">
+                    <a class = 'btn btn-primary' href = "addItem.html" role = "button" >Add Item Menu</a>
+                </div>
+            </div>    
+        
+        <div class=" backToLogIn container h=100">
+            <div class="row">
+                <div class="col">
+                        <a class = 'button btn btn-primary' onclick="backToLogIn()">Back To Log In</a>
+                </div>
+            </div>
+        </div> div>
+        </div> 
+<script>
+const form = document.getElementById('login-form')
+form.addEventListener('submit', loginUser)
+
+async function loginUser(event){
+    event.preventDefault()
+    const email= document.getElementById('loginEmail').value
+    const password= document.getElementById('loginPassword').value
+  
+
+    console.log(email)
+    console.log(password)
+
+    const result = await fetch('../login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            email,
+            password
+        })
+    }).then((res) => res.json())
+     if (result.status === 'ok'){
+        //all went fine 
+        
+        console.log("Got the token:  ",result.data)
+        localStorage.setItem('token', result.data)
+        getUser()
+
+       //Need to add show/hide here for admin/barista stuff.
+     } else {
+         alert(result.error)
+     }
+    }
+</script>
+<script>
+        async function getUser(){
+        const logEmail= document.getElementById('loginEmail').value
+        console.log('here is the get email: ', logEmail)
+
+        const requestOptions = {
+        method: 'GET',
+        headers: {'Content-Type': 'application/json'}
+        }
+        const editLookupEmail = logEmail;
+        const response = await fetch('/users/' + editLookupEmail, requestOptions);
+        
+        const body = await response.json();
+        if (response.status != 200){
+            throw Error('Error!');  
+        }
+        console.log(body);
+        console.log(body.user_role)
+        const userBodyRole = body.user_role
+        console.log('heres userBodyRole at 172: ', userBodyRole)
+        setIt(userBodyRole)
+        //return body;
+        }
+        // setIt(logBody.user_role)
+
+        function setIt (userBodyRole){
+        const loggedUser_Role = document.getElementById('loggedUserRole')
+        const loginUser_Role = userBodyRole
+        loggedUser_Role.setAttribute('data-id', loginUser_Role)
+        console.log(loginUser_Role)
+        showUserMenus();
+        }
+</script>
+<script>
+    function showUserMenus(){
+    var role4Menus = document.getElementById('loggedUserRole').getAttribute('data-id');
+    switch (role4Menus) {
+            case "None":
+            window.location.href = './get-permissions.html'
+                break;
+            case "Barista":
+            displayWorkDayMenu();
+            case "Bakery":
+            displayBakerMenu();
+                break;
+            case "Admin":
+            displayAdmin();
+                break;    
+            default:
+                console.log("No User Role value found - error!")
+                break;
+            }
+        }
+
+        //function to display admin section
+function displayAdmin(){
+//if admin yes do this
+    document.getElementById("login").style.display = "none";
+    document.getElementById("admin").style.display = "block";
+}
+//function to display worker menu
+function displayWorkDayMenu(){
+    //if barista do this
+    document.getElementById("login").style.display = "none";
+    document.getElementById("workDayMenu").style.display = "block";
+}
+//function to display baker menu
+function displayBakerMenu(){
+
+    //if baker do this
+    document.getElementById("login").style.display = "none";
+    document.getElementById("bakerSection").style.display = "block"; 
+}
+//function to go back to log in
+function backToLogIn(){
+    document.getElementById("bakerSection").style.display = "none";
+    document.getElementById("workDayMenu").style.display = "none"; 
+    document.getElementById("admin").style.display = "none";
+    document.getElementById("login").style.display = "block";
+
+}
+</script>
+<script>
+    function showPassword() {
+  var x = document.getElementById("loginPassword");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+</script>
+<script>
+    //function to display admin section
+function displayAdmin(){
+//if admin yes do this
+    document.getElementById("login").style.display = "none";
+    document.getElementById("admin").style.display = "block";
+}
+//function to display worker menu
+function displayWorkDayMenu(){
+    //if barista do this
+    document.getElementById("login").style.display = "none";
+    document.getElementById("workDayMenu").style.display = "block";
+}
+//function to display baker menu
+function displayBakerMenu(){
+
+    //if baker do this
+    document.getElementById("login").style.display = "none";
+    document.getElementById("bakerSection").style.display = "block"; 
+}
+//function to go back to log in
+function backToLogIn(){
+    document.getElementById("bakerSection").style.display = "none";
+    document.getElementById("workDayMenu").style.display = "none"; 
+    document.getElementById("admin").style.display = "none";
+    document.getElementById("login").style.display = "block";
+
+}
+</script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>  
+    <!-- <script src="../login-server-v2.js"></script> -->
+
+</body>
+</html>
