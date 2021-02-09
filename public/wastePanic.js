@@ -231,7 +231,7 @@ if (response.status != 200){
 function selectedPanicItem(){
     getSinglePanicItem().then(function(good){
         let drop = document.getElementById("panicDrop");
-        let _id = drop.options[drop.selectedIndex].value;
+        let _id = drop.options[drop.selectedIndex].dataset.id;
         let itemName = drop.options[drop.selectedIndex].value;
         
         console.log(_id);
@@ -292,91 +292,4 @@ document.getElementById("panicSubmit").addEventListener('click', function(event)
     alert("Admin Notified");
     location.reload();
 });
-
-//async function to get location  
-async function getSingleLocation(){
-    let drop = document.getElementById("locationDrop");
-    let locId = drop.options[drop.selectedIndex].getAttribute("data-id");
-    let locName = drop.options[drop.selectedIndex].value;
-
-    let requestOptions = {
-        method : "GET",
-        headers : {
-            "Content-Type" : "application/json"
-        },
-    }
-    console.log("get single location");
-
-    const response = await fetch('/location/' + locId, requestOptions);
-    const body = await response.json();
-
-    if (response.status != 200){
-        throw Error(body.message);
-    }
-    return body;
-};
-
-//async function to get location list
-async function getLocationList(){
-    let requestOptions = {
-        method : "GET",
-        headers : {
-            "Content-Type" : "application/json"
-            }
-    }
-    const response = await fetch('/locations', requestOptions);
-    const body = await response.json();
-
-    if (response.status != 200){
-        throw Error(body.message);
-    }
-    return body
-};
-
-//function to add locations to drop down list for selection
-function locationList(){
-    getLocationList().then(function (body){
-        for ( let i = 0; i < body.length; i ++){
-            console.log(body[i].location);
-            console.log("getting locations");
-
-            let locationDrop = document.getElementById('locationDrop');
-
-            locationDrop.innerHTML += 
-
-            `<option value = "${body[i].location}" data-name = "${body[i].locName}" data-id="${body[i]._id}">${body[i].location}</option>`
-        }
-    }).catch(function(err){
-        console.log(err);
-    });
-};
-
-//function to load location drop down menu on page load
-window.addEventListener('load', function(event){
-    locationList();
-})
-
-//function to select location from drop 
-function selectedLocation(){
-    getSingleLocation().then( function(location){
-        let drop = document.getElementById("locationDrop");
-        let locId = drop.options[drop.selectedIndex].getAttribute("data-id");
-        let locName = drop.options[drop.selectedIndex].value;
-
-        console.log(locId);
-        console.log(locName);
-    }).catch(function(error){
-        console.log(error);
-    });
-};
-
-
-
-document.getElementById('locationDrop').addEventListener('change', function (event){
-    let selectedLoc = document.getElementById("selectedLocation");
-
-    selectedLoc.innerHTML += `<h5>${event.target.value}</p>`;
-    event.preventDefault();
-    selectedLocation();
-})
 

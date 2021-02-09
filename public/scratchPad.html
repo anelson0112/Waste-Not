@@ -57,8 +57,27 @@
             </div>
         </div>
         
+ <!-- location selection section -->
+ <div class="container">
+    <div class="row">
+        <div class="col"  id="locationSelect">
+            <select id = "locationDrop" name = "locationName">
+                <option class="placeholder">Select Location</option>
+            </select>
+        </div>
+    </div>        
+    <div class="row">
+        <div class="col" id="selectedLocation">
 
+        </div>
+    </div>
+</div>
 
+<div class="edit  col-md-1" data-id="${body[i]._id}">
+    <a href="./update.html?id=${body[i]._id}" data-id="${body[i]._id}">Edit</a>
+</div>
+    
+<a href = "./wastePanic.html?name=${body[i].storeName}" data-id="${body[i]._id}">Update Inventory</a>
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

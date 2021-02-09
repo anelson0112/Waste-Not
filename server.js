@@ -343,6 +343,7 @@ app.get("/location/:id", function (request, response){
         console.error(err);
         return;
         }
+        console.log("line 346");
         console.log(location);
         response.status(200).send(location);
     });
