@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Playfair+Display&display=swap" rel="stylesheet">    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="style.css">
+    <title>Waste Not Need User Permissions</title>
+</head>
+<body>
+    <div id = "header" class = "row">
+        <div class = "col">
+            <h1>Thanks for registering.</h1>
+        </div>
+    </div>
+    <div class='container'>
+        <h2>Almost done - follow these instructions:</h2>
+            <div>
+            <ol style="line-height:180%">    
+            <h4>1. Please see a supervisor to get your User Role modified to access Waste Not. </h4>
+            <h4>2. After that is complete, please log back in Waste Not and you'll have access!</h4>
+            </ol>
+            </div> 
+            <a href="./login_v2.html" type='button' id='goToLogin'>Login</a>     
+    </div>
+    <script>
+        const passedJwtToken = localStorage.getItem('token')
+        console.log('heres the passed token:  ',passedJwtToken)
+    </script>

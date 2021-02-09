@@ -195,7 +195,9 @@ async function getUpdateGood(data){
     }); 
 }
 
-//SERVER SIDE ADD USER
+//!SERVER SIDE ADD USER
+//!SERVER SIDE ADD USER
+//!SERVER SIDE ADD USER
 
 app.post("/users", (request, response) => {
     console.log(request.body);
@@ -210,7 +212,10 @@ app.post("/users", (request, response) => {
 });
 
 
-// SERVER SIDE FIND USER
+//!  SERVER SIDE FIND USER
+//!  SERVER SIDE FIND USER
+//!  SERVER SIDE FIND USER
+
 app.get('/users/:email', (request, response) => {
     console.log(request.params.email);
     User.findOne({email: `${request.params.email}`}).exec((err, user) => {
@@ -219,7 +224,7 @@ app.get('/users/:email', (request, response) => {
     })
 });
 
-//SERVER SIDE DELETE USER
+
 
 
 // app.delete('/users/:email', async (request, response) => {
@@ -232,6 +237,10 @@ app.get('/users/:email', (request, response) => {
 //         console.log('Didnt find the user!');
 //     }
 // });
+
+//!SERVER SIDE DELETE USER
+//!SERVER SIDE DELETE USER
+//!SERVER SIDE DELETE USER
 
 app.delete('/users/:id', (request, response) => {
     console.log(request.params.id);
