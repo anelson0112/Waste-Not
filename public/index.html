@@ -218,7 +218,8 @@ async function loginUser(event){
             window.location.href = './get-permissions.html'
                 break;
             case "Barista":
-            displayWorkDayMenu();
+            location.href = "workDayMenu.html"
+            // displayWorkDayMenu();
             case "Bakery":
             displayBakerMenu();
                 break;
@@ -238,8 +239,10 @@ function displayAdmin(){
     document.getElementById("admin").style.display = "block";
 }
 //function to display worker menu
+// UNUSED, SENDING TO WORKDAYMENU PAGE IN SWITCH FUNCTION
 function displayWorkDayMenu(){
     //if barista do this
+    
     document.getElementById("login").style.display = "none";
     document.getElementById("workDayMenu").style.display = "block";
 }
