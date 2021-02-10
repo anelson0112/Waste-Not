@@ -94,7 +94,7 @@ async function getItemList(){
 
     function returnToWorkDay(){
         location.href = "wastePanic.html";
-        displayWorkDayMenu();
+        //displayWorkDayMenu();
 
     }
 
