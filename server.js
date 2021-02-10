@@ -528,7 +528,7 @@ app.post('/sendemail',(req,res)=>{
     // <h2> name:${req.body.name} </h2><br>
     // <h2> email:${req.body.email} </h2><br>
     // <h2> phonenumber:${req.body.phonenumber} </h2><br>
-    `<h2> ${req.body.itemName} is running low at ${req.body.location} and needs restocking</h2>`
+    `<h2> ${req.body.itemName} is running low at ${req.body.storeName} and needs restocking</h2>`
     };
     /*
      Here comes the important part, sendMail is the method which actually sends email, it takes mail options and
