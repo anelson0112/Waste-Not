@@ -56,7 +56,9 @@ var Action = require ("./models/actionDatabase.js");
 
 
 //declare port to connect to
-const port = 3000;
+// const port = 3000;
+
+const port = process.env.PORT || 80;
 
 //connect to Atlas cluster
 const mongoLogIn = process.env.mongoInfo
