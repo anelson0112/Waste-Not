@@ -56,9 +56,9 @@ var Action = require ("./models/actionDatabase.js");
 
 
 //declare port to connect to
-// const port = 3000;
+const port = 3000;
 
-const port = process.env.PORT || 80;
+// const port = process.env.PORT || 80;
 
 //connect to Atlas cluster
 const mongoLogIn = process.env.mongoInfo
@@ -98,7 +98,7 @@ app.use(methodOverride('_method'))
 app.use(express.json())
 
 //open up server, list on specific id and port
-//ip address aka hostnames
+//ip address aka hostnamesnpm
 app.listen(port, function(){
     console.log("Server is running at " + port)
 });
